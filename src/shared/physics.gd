@@ -1,12 +1,12 @@
 extends KinematicBody2D
 class_name Physics
 
-export var _friction: = 0.1
+export var _friction: = 0.2
 const FLOOR_NORMAL = Vector2.UP
 
 
 func fix_rotation_calculation(angle: float) -> float: # Used to fix the calculation of the self.rotation_degrees
-	return (angle * -1 + 90) / 180 * 3.14159265
+	return (angle * -1 + 3.14159265/2)
 
 func reverse_fix_rotation_calculation(angle: float) -> float: # Reverse of fix_rotation_calculation()
 	return ((angle * 180 / 3.14159265) - 90) * -1
@@ -22,3 +22,11 @@ func move_and_slide_angles(angle: float, speed: float, delta: float) -> Array: #
 
 func calcVelcoity(angle: float, speed: float) -> Vector2: # calculates the velocity with angles and speed
 	return Vector2( cos(angle) * speed, -sin(angle) * speed)
+
+func turn_to_target(target: float, speed: float, angle: float, delta: float) -> float:
+	var difference = angle - target
+	while difference > 3.1415:
+		difference -= 3.1415*2
+	while difference < -3.1415:
+		difference += 3.1415*2
+	return difference / abs(difference) * speed * delta

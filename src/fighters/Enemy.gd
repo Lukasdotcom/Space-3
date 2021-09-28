@@ -8,6 +8,7 @@ var _last_shot = 0
 var _rng = RandomNumberGenerator.new()
 func _ready():
 	_rng.randomize()
+	_last_shot = OS.get_ticks_msec() + _reload * _rng.randf()
 var _low_reload_random = -100
 var _high_reload_random = 100
 func _physics_process(delta: float) -> void:

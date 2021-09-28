@@ -20,7 +20,7 @@ func _physics_process(delta: float) -> void:
 
 func _body_entered(body: Node) -> void:
 	body.queue_free()
-	queue_free()
+	get_tree().change_scene("res://src/Menu/Main Menu.tscn")
 
 func _shoot():
 	if _last_shot + _reload < OS.get_ticks_msec():
@@ -31,3 +31,4 @@ func _shoot():
 		bullet.position = self.position + calcVelcoity(fix_rotation_calculation(self.rotation), 50)
 		bullet.rotation = self.rotation
 		get_node("/root/Arena/").add_child_below_node(get_node("/root/Arena/"),bullet)
+

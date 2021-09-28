@@ -21,7 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Space 3"
-run/main_scene="res://src/scene/Arena.tscn"
+run/main_scene="res://src/Menu/Main Menu.tscn"
 config/icon="res://icon.png"
 
 [display]
@@ -73,6 +73,9 @@ shoot={
 2d_physics/layer_2="bullet"
 2d_render/layer_3="world"
 2d_physics/layer_3="world"
+2d_render/layer_4="enemy"
+2d_physics/layer_4="enemy"
+2d_physics/layer_5="player"
 
 [physics]
 

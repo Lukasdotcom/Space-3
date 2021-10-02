@@ -18,7 +18,5 @@ export(Dictionary) var preferences: = {
 	"bullet" : {
 		"speed" : 700
 	}
-} setget change_preference
+}
 
-func change_preference(value: Dictionary) -> void:
-	1

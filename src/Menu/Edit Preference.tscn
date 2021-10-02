@@ -1,0 +1,69 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/main_theme.tres" type="Theme" id=1]
+[ext_resource path="res://src/Menu/Text Preference.gd" type="Script" id=2]
+
+[node name="Edit Preference" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.33569
+margin_top = 1.35498
+margin_right = 5.33569
+margin_bottom = 1.35498
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -360.0
+margin_top = 18.9697
+margin_right = 360.0
+margin_bottom = 162.97
+text = "Edit Preferences Here!
+Warning some changes may cause crashes."
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text Preference" type="TextEdit" parent="."]
+anchor_top = 0.00250922
+anchor_bottom = 0.00250922
+margin_left = -4.0
+margin_top = 167.29
+margin_right = 1916.0
+margin_bottom = 931.29
+syntax_highlighting = true
+smooth_scrolling = true
+wrap_enabled = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Save and Return" type="Button" parent="."]
+margin_left = 462.402
+margin_top = 975.391
+margin_right = 884.402
+margin_bottom = 1054.39
+text = "Save and Return to Menu"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Return" type="Button" parent="."]
+margin_left = 1116.08
+margin_top = 975.186
+margin_right = 1417.08
+margin_bottom = 1054.19
+text = "Return to Menu"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="button_up" from="Save and Return" to="Text Preference" method="_on_Save_and_Return_button_up"]
+[connection signal="button_up" from="Return" to="Text Preference" method="_on_Return_button_up"]

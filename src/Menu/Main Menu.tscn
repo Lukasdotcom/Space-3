@@ -6,22 +6,11 @@
 [node name="Main Menu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 3.91473
-margin_bottom = 3.91479
+margin_left = 1.25342
+margin_top = 5.16812
+margin_right = 1.25342
+margin_bottom = 5.16821
 theme = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Start" type="Button" parent="."]
-anchor_top = 0.00120827
-anchor_bottom = 0.00120827
-margin_left = 795.872
-margin_top = 464.98
-margin_right = 1147.87
-margin_bottom = 526.98
-text = "Start"
-script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -38,4 +27,43 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Start" type="Button" parent="."]
+anchor_top = 0.00352941
+anchor_bottom = 0.00352941
+margin_left = 795.872
+margin_top = 379.749
+margin_right = 1147.87
+margin_bottom = 441.749
+text = "Start"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Preferences" type="Button" parent="."]
+anchor_top = 0.00120827
+anchor_bottom = 0.00120827
+margin_left = 794.92
+margin_top = 540.184
+margin_right = 1146.92
+margin_bottom = 602.184
+text = "Preferences"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Quit" type="Button" parent="."]
+anchor_top = 0.00120827
+anchor_bottom = 0.00120827
+margin_left = 794.92
+margin_top = 674.552
+margin_right = 1146.92
+margin_bottom = 736.552
+text = "Quit"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="button_up" from="Start" to="Start" method="_button_up"]
+[connection signal="button_up" from="Preferences" to="Start" method="_on_Preferences_button_up"]
+[connection signal="button_up" from="Quit" to="Start" method="_on_Quit_button_up"]

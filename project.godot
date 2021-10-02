@@ -24,6 +24,10 @@ config/name="Space 3"
 run/main_scene="res://src/Menu/Main Menu.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Preferences="*res://src/data/Preferences.tscn"
+
 [display]
 
 window/size/width=1920

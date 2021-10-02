@@ -1,7 +1,7 @@
 extends KinematicBody2D
 class_name Physics
-
-export var _friction: = 0.2
+var preferences = Preferences.preferences
+var _friction = preferences["friction"]
 const FLOOR_NORMAL = Vector2.UP
 
 

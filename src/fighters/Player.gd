@@ -1,9 +1,9 @@
 extends Physics
-export var _brake: = -700
-export var _accelerate: = 700
-export var _rotation: = 2
+var _brake = preferences["player"]["brake"]
+var _accelerate = preferences["player"]["accelerate"]
+var _rotation = preferences["player"]["rotation"]
+var _reload = preferences["player"]["reload"]
 var _speed = 0.1
-export var _reload = 1000
 var _last_shot = 0
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_released("shoot"):

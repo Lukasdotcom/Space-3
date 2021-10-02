@@ -1,16 +1,17 @@
 extends Physics
-export var _brake: = -500
-export var _accelerate: = 500
-export var _rotation: = 1.5
+var _brake = preferences["enemy"]["brake"]
+var _accelerate = preferences["enemy"]["accelerate"]
+var _rotation = preferences["enemy"]["rotation"]
+var _reload = preferences["enemy"]["reload"]
+var _low_reload_random = -1 * preferences["enemy"]["reloadConsistency"]
+var _high_reload_random = preferences["enemy"]["reloadConsistency"]
 var _speed = 0.1
-export var _reload = 1750
 var _last_shot = 0
 var _rng = RandomNumberGenerator.new()
 func _ready():
 	_rng.randomize()
 	_last_shot = OS.get_ticks_msec() + _reload * _rng.randf()
-var _low_reload_random = -100
-var _high_reload_random = 100
+
 func _physics_process(delta: float) -> void:
 	_shoot()
 	_speed *= pow(_friction, delta)

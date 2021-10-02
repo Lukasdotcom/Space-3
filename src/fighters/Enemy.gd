@@ -35,7 +35,7 @@ func _body_entered(body: Node) -> void:
 func _shoot():
 	if _last_shot + _reload < OS.get_ticks_msec():
 		_last_shot = OS.get_ticks_msec() + _rng.randi_range(_low_reload_random, _high_reload_random)
-		var bullet = load("res://src/fighters/Bullet.tscn")
+		var bullet = load("res://src/fighters/BulletEnemy.tscn")
 		bullet = bullet.instance()
 		bullet.position = self.position + calcVelcoity(fix_rotation_calculation(self.rotation), 50)
 		bullet.rotation = self.rotation

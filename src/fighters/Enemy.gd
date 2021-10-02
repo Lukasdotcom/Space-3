@@ -27,6 +27,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _body_entered(body: Node) -> void:
+	get_node("/root/Arena/Game Data").enemies -= 1
 	body.queue_free()
 	queue_free()
 

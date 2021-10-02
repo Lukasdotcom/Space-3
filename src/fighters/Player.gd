@@ -27,7 +27,6 @@ func _shoot():
 		_last_shot = OS.get_ticks_msec()
 		var bullet = load("res://src/fighters/Bullet.tscn")
 		bullet = bullet.instance()
-		print(get_node("/root/Arena"))
 		bullet.position = self.position + calcVelcoity(fix_rotation_calculation(self.rotation), 50)
 		bullet.rotation = self.rotation
 		get_node("/root/Arena/").add_child_below_node(get_node("/root/Arena/"),bullet)

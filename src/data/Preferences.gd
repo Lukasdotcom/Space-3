@@ -8,6 +8,20 @@ export(Dictionary) var preferences: = {
 		"reload" : 1000
 	},
 	"enemy" : {
+		"AI" : [
+			{
+				"action" : "accelerate",
+				"strength" : 1,
+				"time" : 3000,
+				"variance" : 100
+			},
+			{
+				"action" : "brake",
+				"strength" : 0,
+				"time" : 1000,
+				"variance" : 100
+			}
+		],
 		"brake" : -500,
 		"accelerate" : 500,
 		"rotation" : 1.7,

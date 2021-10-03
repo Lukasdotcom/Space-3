@@ -29,6 +29,7 @@ export(Dictionary) var preferences: = {
 		"reloadConsistency" : 100
 	},
 	"friction" : 0.2,
+	"scale" : 1,
 	"bullet" : {
 		"speed" : 700
 	}

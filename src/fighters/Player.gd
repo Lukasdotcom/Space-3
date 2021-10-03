@@ -24,8 +24,8 @@ func _physics_process(delta: float) -> void:
 
 
 func _body_entered(body: Node) -> void:
+	self.queue_free()
 	body.queue_free()
-	get_tree().change_scene("res://src/Menu/Main Menu.tscn")
 
 func _shoot():
 	if _last_shot + _reload < OS.get_ticks_msec():

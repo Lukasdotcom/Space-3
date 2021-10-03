@@ -35,6 +35,7 @@ export(Dictionary) var preferences: = {
 	"scale" : 1,
 	"bullet" : {
 		"speed" : 700
-	}
+	},
+	"waitAfterDeath" : 1.5
 }
 

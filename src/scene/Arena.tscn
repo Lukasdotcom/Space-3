@@ -9,7 +9,7 @@
 [node name="Arena" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 767.417, 525.658 )
+position = Vector2( 767.417, 540 )
 rotation = 1.5708
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -25,5 +25,5 @@ position = Vector2( 899.104, 525.821 )
 [node name="Game Data" parent="." instance=ExtResource( 4 )]
 
 [node name="Enemy" parent="." instance=ExtResource( 3 )]
-position = Vector2( 1853.31, 532.014 )
+position = Vector2( 1813.62, 540 )
 rotation = -1.5708

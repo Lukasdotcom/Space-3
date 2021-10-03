@@ -26,7 +26,10 @@ export(Dictionary) var preferences: = {
 		"accelerate" : 500,
 		"rotation" : 1.7,
 		"reload" : 1200,
-		"reloadConsistency" : 100
+		"reloadConsistency" : 100,
+		"bannedSpawn" : [
+			[200, 1720, 200, 880]
+		]
 	},
 	"friction" : 0.2,
 	"scale" : 1,

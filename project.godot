@@ -74,8 +74,8 @@ shoot={
 
 2d_render/layer_1="fighter"
 2d_physics/layer_1="fighter"
-2d_render/layer_2="bullet"
-2d_physics/layer_2="bullet"
+2d_render/layer_2="bulletPlayer"
+2d_physics/layer_2="bulletPlayer"
 2d_render/layer_3="world"
 2d_physics/layer_3="world"
 2d_render/layer_4="enemy"

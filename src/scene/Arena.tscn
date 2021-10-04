@@ -1,15 +1,18 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/fighters/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/scene/simpleTile.tres" type="TileSet" id=2]
 [ext_resource path="res://src/fighters/Enemy.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/data/Game Data.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/scene/Spawner.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/scene/Arena.gd" type="Script" id=6]
+[ext_resource path="res://src/scene/Game Interface.tscn" type="PackedScene" id=7]
 
 [node name="Arena" type="Node2D"]
+script = ExtResource( 6 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 767.417, 525.658 )
+position = Vector2( 767.417, 540 )
 rotation = 1.5708
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -25,5 +28,17 @@ position = Vector2( 899.104, 525.821 )
 [node name="Game Data" parent="." instance=ExtResource( 4 )]
 
 [node name="Enemy" parent="." instance=ExtResource( 3 )]
-position = Vector2( 1853.31, 532.014 )
+position = Vector2( 1813.62, 540 )
 rotation = -1.5708
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Game Interface" parent="." instance=ExtResource( 7 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 1920.0
+margin_bottom = 1080.0
+
+[connection signal="tree_exited" from="Player" to="." method="_on_Player_died"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

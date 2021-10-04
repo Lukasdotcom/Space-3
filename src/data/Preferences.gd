@@ -8,15 +8,34 @@ export(Dictionary) var preferences: = {
 		"reload" : 1000
 	},
 	"enemy" : {
+		"AI" : [
+			{
+				"action" : "accelerate",
+				"strength" : 1,
+				"time" : 3000,
+				"variance" : 100
+			},
+			{
+				"action" : "brake",
+				"strength" : 0,
+				"time" : 1000,
+				"variance" : 100
+			}
+		],
 		"brake" : -500,
 		"accelerate" : 500,
 		"rotation" : 1.7,
 		"reload" : 1200,
-		"reloadConsistency" : 100
+		"reloadConsistency" : 100,
+		"bannedSpawn" : [
+			[200, 1720, 200, 880]
+		]
 	},
 	"friction" : 0.2,
+	"scale" : 1,
 	"bullet" : {
 		"speed" : 700
-	}
+	},
+	"waitAfterDeath" : 1
 }
 

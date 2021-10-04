@@ -32,7 +32,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _body_entered(body: Node) -> void: #Used to check is the enemy dies
-	get_node("/root/Arena/Game Data").enemies -= 1
+	get_node("/root/Arena/Game Data").enemy_died()
 	body.queue_free()
 	queue_free()
 
@@ -48,7 +48,6 @@ func _shoot(): #Used to shoot whenever possible
 
 func _enemy_action(speed: float, delta: float) -> float: #Used to calculate the new speed
 	if _action["timeEnd"] < OS.get_ticks_msec():
-		print(_action["timeEnd"])
 		_action["number"] += 1
 		if _action["number"] >= _AI.size():
 			_action["number"] = 0

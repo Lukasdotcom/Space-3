@@ -56,7 +56,7 @@ func _enemy_action(speed: float, delta: float) -> float: #Used to calculate the 
 	var _action_name = _AI[_action["number"]]["action"]
 	var _action_strength = _AI[_action["number"]]["strength"]
 	if _action_name == "brake":
-		return speed + -1 * _action_strength * _brake * delta
+		return speed + _action_strength * _brake * delta
 	elif _action_name == "accelerate":
 		return speed + _action_strength * _accelerate * delta
 	else:

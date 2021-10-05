@@ -37,5 +37,17 @@ export(Dictionary) var preferences: = {
 		"speed" : 700
 	},
 	"waitAfterDeath" : 1
-}
+} setget changed
 
+func changed(value: Dictionary) -> void:
+	preferences = correctValues(preferences, value, [])
+
+func correctValues(old: Dictionary, new: Dictionary, treePath: Array) -> Dictionary:
+	for x in new:
+		if typeof(old[x]) == TYPE_DICTIONARY:
+			var newTreePath = treePath.duplicate()
+			newTreePath.append(x)
+			correctValues(old[x], new[x], treePath)
+		else:
+			old[x] = new[x]
+	return old

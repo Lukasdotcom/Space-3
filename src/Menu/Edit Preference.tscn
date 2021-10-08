@@ -46,24 +46,35 @@ __meta__ = {
 }
 
 [node name="Save and Return" type="Button" parent="."]
-margin_left = 462.402
-margin_top = 975.391
-margin_right = 884.402
-margin_bottom = 1054.39
+margin_left = 769.611
+margin_top = 976.394
+margin_right = 1191.61
+margin_bottom = 1055.39
 text = "Save and Return to Menu"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Return" type="Button" parent="."]
-margin_left = 1116.08
+margin_left = 1372.79
 margin_top = 975.186
-margin_right = 1417.08
+margin_right = 1673.79
 margin_bottom = 1054.19
 text = "Return to Menu"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Reset" type="Button" parent="."]
+margin_left = 282.314
+margin_top = 975.186
+margin_right = 583.314
+margin_bottom = 1054.19
+text = "Reset Settings"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="button_up" from="Save and Return" to="Text Preference" method="_on_Save_and_Return_button_up"]
 [connection signal="button_up" from="Return" to="Text Preference" method="_on_Return_button_up"]
+[connection signal="button_up" from="Reset" to="Text Preference" method="_on_Reset_button_up"]

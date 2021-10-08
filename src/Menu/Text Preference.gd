@@ -14,3 +14,9 @@ func _on_Return_button_up() -> void:
 
 func returnMainMenu():
 	get_tree().change_scene("res://src/Menu/Main Menu.tscn")
+
+
+
+func _on_Reset_button_up() -> void:
+	Preferences.reset()
+	get_tree().reload_current_scene()

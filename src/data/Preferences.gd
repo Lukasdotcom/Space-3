@@ -58,20 +58,27 @@ func _ready() -> void:
 			preferences = data
 
 
+func reset() -> void:
+	preferences = startPreference.duplicate()
+	save()
+
+
 func changed(value: Dictionary) -> void:
-	preferences = correctValues(preferences, value, [])
+	preferences = correctValues(preferences, value)
+	save()
+
+
+func save() -> void:
 	var file = File.new()
 	file.open(preference_file, File.WRITE)
 	file.store_string(to_json(preferences))
 	file.close()
 
-func correctValues(old: Dictionary, new: Dictionary, treePath: Array) -> Dictionary:
+func correctValues(old: Dictionary, new: Dictionary) -> Dictionary:
 	for x in old:
 		if typeof(old[x]) == TYPE_DICTIONARY:
 			if x in new:
-				var newTreePath = treePath.duplicate()
-				newTreePath.append(x)
-				old[x] = correctValues(old[x], new[x], treePath)
+				old[x] = correctValues(old[x], new[x])
 		else:
 			old[x] = new[x]
 	return old

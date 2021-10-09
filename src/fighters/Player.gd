@@ -27,11 +27,12 @@ func _body_entered(body: Node) -> void:
 	self.queue_free()
 	body.queue_free()
 
-func _shoot():
-	if _last_shot + _reload < OS.get_ticks_msec():
+func _shoot(): # Used to shoot a bullet
+	if _last_shot + _reload < OS.get_ticks_msec(): # makes sure that the player can shoot
 		_last_shot = OS.get_ticks_msec()
 		var bullet = load("res://src/fighters/Bullet.tscn")
 		bullet = bullet.instance()
+		bullet.shooter = "player"
 		bullet.position = self.position + calcVelcoity(fix_rotation_calculation(self.rotation), 45 * preferences["scale"])
 		bullet.rotation = self.rotation
 		bullet.set_scale(Vector2(preferences["scale"], preferences["scale"]))

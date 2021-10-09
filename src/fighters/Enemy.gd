@@ -39,8 +39,9 @@ func _body_entered(body: Node) -> void: #Used to check is the enemy dies
 func _shoot(): #Used to shoot whenever possible
 	if _last_shot + _reload < OS.get_ticks_msec():
 		_last_shot = OS.get_ticks_msec() + _random_float(_reload_random)
-		var bullet = load("res://src/fighters/BulletEnemy.tscn")
+		var bullet = load("res://src/fighters/Bullet.tscn")
 		bullet = bullet.instance()
+		bullet.shooter = "enemy"
 		bullet.position = self.position + calcVelcoity(fix_rotation_calculation(self.rotation), 45 * preferences["scale"])
 		bullet.rotation = self.rotation
 		bullet.set_scale(Vector2(preferences["scale"], preferences["scale"]))

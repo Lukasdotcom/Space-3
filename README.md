@@ -8,3 +8,6 @@
  
  ## Space 2
  Space 2 is the game this is based off of and the link to it is [this](https://chrome.google.com/webstore/detail/space-2/dppioefgnilecmpdjigboccmefagjgoh).
+
+## Controls
+Use the arrow keys to move and the spacebar to shoot.

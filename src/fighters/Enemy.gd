@@ -12,8 +12,6 @@ var _rng = RandomNumberGenerator.new()
 func _ready():
 	_rng.randomize()
 	_last_shot = OS.get_ticks_msec() + _reload * _rng.randf()
-	# Makes sure that the scale is right
-	self.set_scale(Vector2(preferences["scale"], preferences["scale"]))
 
 
 func _physics_process(delta: float) -> void:
@@ -42,9 +40,8 @@ func _shoot(): #Used to shoot whenever possible
 		var bullet = load("res://src/fighters/Bullet.tscn")
 		bullet = bullet.instance()
 		bullet.shooter = "enemy"
-		bullet.position = self.position + calcVelcoity(fix_rotation_calculation(self.rotation), 45 * preferences["scale"])
+		bullet.position = self.position + calcVelcoity(fix_rotation_calculation(self.rotation), 45 * preferences["global"]["scale"])
 		bullet.rotation = self.rotation
-		bullet.set_scale(Vector2(preferences["scale"], preferences["scale"]))
 		get_node("/root/Arena/").add_child_below_node(get_node("/root/Arena/"),bullet)
 
 func _enemy_action(speed: float, delta: float) -> float: #Used to calculate the new speed

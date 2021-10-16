@@ -4,8 +4,11 @@ const preference_file = "user://preferences.json"
 
 
 export(Dictionary) var startPreference: = {
-	"bullet": {
-		"speed": 700
+	"global" : {
+		"friction": 0.2,
+		"scale": 1,
+		"version" : "0.3.0",
+		"waitAfterDeath": 1
 	},
 	"enemy": {
 		"AI": [
@@ -22,6 +25,9 @@ export(Dictionary) var startPreference: = {
 				"variance": 100
 			}
 		],
+		"bullet": {
+			"speed": 700
+		},
 		"accelerate": 500,
 		"bannedSpawn": [
 			[
@@ -34,24 +40,26 @@ export(Dictionary) var startPreference: = {
 		"brake": -500,
 		"reload": 1200,
 		"reloadConsistency": 100,
-		"rotation": 1.7
+		"rotation": 1.7,
+		"events" : {}
 	},
-	"friction": 0.2,
 	"player": {
 		"accelerate": 600,
+		"bullet": {
+			"speed": 700
+		},
 		"brake": -600,
 		"reload": 1000,
-		"rotation": 2
-	},
-	"scale": 1,
-	"version" : "0.2.2",
-	"waitAfterDeath": 1
+		"rotation": 2,
+		"events" : {"ability" : {"time": 2000}}
+	}
 } 
+
 export var preferences: Dictionary = startPreference.duplicate() setget changed
 
 func _ready() -> void:
 	var file = File.new()
-	if file.file_exists(preference_file):
+	if file.file_exists(preference_file) and false:
 		file.open(preference_file, File.READ)
 		var data = parse_json(file.get_as_text())
 		file.close()
@@ -65,7 +73,7 @@ func reset() -> void:
 
 
 func changed(value: Dictionary) -> void:
-	preferences = correctValues(preferences, value)
+	preferences = value
 	save()
 
 
@@ -74,13 +82,3 @@ func save() -> void:
 	file.open(preference_file, File.WRITE)
 	file.store_string(to_json(preferences))
 	file.close()
-
-func correctValues(old: Dictionary, new: Dictionary) -> Dictionary:
-	for x in old:
-		if typeof(old[x]) == TYPE_DICTIONARY:
-			if x in new:
-				old[x] = correctValues(old[x], new[x])
-		else:
-			if x in new:
-				old[x] = new[x]
-	return old

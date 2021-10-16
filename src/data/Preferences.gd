@@ -44,6 +44,7 @@ export(Dictionary) var startPreference: = {
 		"rotation": 2
 	},
 	"scale": 1,
+	"version" : "0.2.2",
 	"waitAfterDeath": 1
 } 
 export var preferences: Dictionary = startPreference.duplicate() setget changed
@@ -55,7 +56,7 @@ func _ready() -> void:
 		var data = parse_json(file.get_as_text())
 		file.close()
 		if typeof(data) == TYPE_DICTIONARY:
-			preferences = data
+			changed(data)
 
 
 func reset() -> void:
@@ -80,5 +81,6 @@ func correctValues(old: Dictionary, new: Dictionary) -> Dictionary:
 			if x in new:
 				old[x] = correctValues(old[x], new[x])
 		else:
-			old[x] = new[x]
+			if x in new:
+				old[x] = new[x]
 	return old

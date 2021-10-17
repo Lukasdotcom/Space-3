@@ -19,5 +19,5 @@ func spawn(number: int) -> void:
 				break
 		var _angle = (Vector2(maxX/2, maxY/2) - fighter.position).angle()
 		fighter.set_rotation(_angle + 3.141592/2)
-		get_node("/root/Arena/").add_child_below_node(get_node("/root/Arena/"),fighter)
+		get_node("/root/Arena/").call_deferred("add_child", fighter)
 

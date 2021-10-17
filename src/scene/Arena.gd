@@ -2,7 +2,7 @@ extends Node2D
 
 
 
-func _on_Player_died() -> void:
+func on_player_death() -> void:
 	get_node("Timer").start(Preferences.preferences["global"]["waitAfterDeath"])
 
 

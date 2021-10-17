@@ -42,7 +42,7 @@ func _shoot(): #Used to shoot whenever possible
 		bullet.shooter = "enemy"
 		bullet.position = self.position + calcVelcoity(fix_rotation_calculation(self.rotation), 45 * preferences["global"]["scale"])
 		bullet.rotation = self.rotation
-		get_node("/root/Arena/").add_child_below_node(get_node("/root/Arena/"),bullet)
+		get_node("/root/Arena/").add_child(bullet)
 
 func _enemy_action(speed: float, delta: float) -> float: #Used to calculate the new speed
 	if _action["timeEnd"] < OS.get_ticks_msec():

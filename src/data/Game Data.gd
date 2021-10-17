@@ -1,12 +1,18 @@
 extends Node
-
 signal update_game_interface # will be sent if the score or round changes
-
 var maxEnemies = 1
 var enemies = 0
 var score: = 0 setget add_score
 var round_number = 1
 
+func _ready() -> void:
+	var player = load("res://src/fighters/Player.tscn") # Spawns player
+	player = player.instance()
+	player.position = Vector2(840, 580)
+	player.rotation = 3.1415/2
+	get_node("/root/Arena/").call_deferred("add_child", player)
+	get_node("/root/Arena/Spawner").spawn(1) # Spawns 1 enemy
+	
 func enemy_died() -> void:
 	enemies -= 1
 	add_score(score + 1)

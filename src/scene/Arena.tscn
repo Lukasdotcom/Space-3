@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/scene/simpleTile.tres" type="TileSet" id=2]
-[ext_resource path="res://src/data/Game Data.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/scene/Spawner.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/scene/Arena.gd" type="Script" id=6]
 [ext_resource path="res://src/scene/Game Interface.tscn" type="PackedScene" id=7]
@@ -18,8 +17,6 @@ tile_data = PoolIntArray( -1, 0, 0, -65536, 0, 0, -65535, 0, 0, -65534, 0, 0, -6
 
 [node name="Spawner" parent="." instance=ExtResource( 5 )]
 position = Vector2( 899.104, 525.821 )
-
-[node name="Game Data" parent="." instance=ExtResource( 4 )]
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true

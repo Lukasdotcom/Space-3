@@ -2,9 +2,20 @@ extends Node2D
 export var maxX = 1920
 export var maxY = 1080
 var _rng = RandomNumberGenerator.new()
+
 func _ready():
+	Events.start_event("global", "gameStart")
 	_rng.randomize()
+	var player = load("res://src/fighters/Player.tscn") # Spawns player
+	player = player.instance()
+	player.position = Vector2(840, 580)
+	player.rotation = 3.1415/2
+	get_node("/root/Arena/").call_deferred("add_child", player)
+	spawn(1) # Spawns 1 enemy
+	
+	
 func spawn(number: int) -> void:
+	Events.start_event("global", "newSpawning")
 	for _x in range(number):
 		var fighter = load("res://src/fighters/Enemy.tscn")
 		fighter = fighter.instance()

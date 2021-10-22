@@ -7,8 +7,8 @@ export(Dictionary) var startPreference: = {
 	"global" : {
 		"friction": 0.2,
 		"scale": 1,
-		"version" : "0.3.0",
-		"waitAfterDeath": 1
+		"waitAfterDeath": 1,
+		"events" : []
 	},
 	"enemy": {
 		"AI": [
@@ -41,7 +41,7 @@ export(Dictionary) var startPreference: = {
 		"reload": 1200,
 		"reloadConsistency": 100,
 		"rotation": 1.7,
-		"events" : {}
+		"events" : []
 	},
 	"player": {
 		"accelerate": 600,
@@ -51,8 +51,10 @@ export(Dictionary) var startPreference: = {
 		"brake": -600,
 		"reload": 1000,
 		"rotation": 2,
-		"events" : {"ability" : {"time": 2000}}
-	}
+		"abilityReload" : 5000,
+		"events" : [{"name" : "ability", "time": 2000, "stats" : [{"type": "set", "path" : ["player", "reload"], "value" : 500}, {"type": "set", "path" : ["player", "bullet", "speed"], "value" : 1500}]}]
+	},
+	"version" : "0.3.0"
 } 
 
 export var preferences: Dictionary = startPreference.duplicate() setget changed

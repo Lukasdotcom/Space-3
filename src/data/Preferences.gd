@@ -117,6 +117,8 @@ func reset() -> void:
 
 func changed(value: Dictionary) -> void:	
 	preferences = value
+	if not preferences.has_all(["version"]):
+		reset()
 	if preferences["version"] == "0.2.2": # Updates the preferences to be compatible with new version
 		preferences["version"] = "0.3.0"
 		preferences["global"] = {
@@ -134,6 +136,8 @@ func changed(value: Dictionary) -> void:
 		preferences.erase("waitAfterDeath")
 		preferences.erase("friction")
 		preferences.erase("bullet")
+	if preferences["version"] != startPreference["version"]:
+		reset()
 	save()
 
 

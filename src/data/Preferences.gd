@@ -115,8 +115,25 @@ func reset() -> void:
 	save()
 
 
-func changed(value: Dictionary) -> void:
+func changed(value: Dictionary) -> void:	
 	preferences = value
+	if preferences["version"] == "0.2.2": # Updates the preferences to be compatible with new version
+		preferences["version"] = "0.3.0"
+		preferences["global"] = {
+					"events": [],
+					"friction": preferences["friction"],
+					"scale": preferences["scale"],
+					"waitAfterDeath": preferences["waitAfterDeath"]
+						}
+		preferences["player"]["events"] = []
+		preferences["player"]["bullet"] = preferences["bullet"]
+		preferences["player"]["abilityReload"] = startPreference["player"]["abilityReload"]
+		preferences["enemy"]["events"] = []
+		preferences["enemy"]["bullet"] = preferences["bullet"]
+		preferences.erase("scale")
+		preferences.erase("waitAfterDeath")
+		preferences.erase("friction")
+		preferences.erase("bullet")
 	save()
 
 

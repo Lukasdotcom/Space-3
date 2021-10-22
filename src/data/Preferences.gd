@@ -4,64 +4,105 @@ const preference_file = "user://preferences.json"
 
 
 export(Dictionary) var startPreference: = {
-	"global" : {
-		"friction": 0.2,
-		"scale": 1,
-		"waitAfterDeath": 1,
-		"events" : []
-	},
-	"enemy": {
-		"AI": [
-			{
-				"action": "accelerate",
-				"strength": 1,
-				"time": 3000,
-				"variance": 100
-			},
-			{
-				"action": "brake",
-				"strength": 0,
-				"time": 1000,
-				"variance": 100
-			}
-		],
-		"bullet": {
-			"speed": 700
+"enemy": {
+	"AI": [
+		{
+			"action": "accelerate",
+			"strength": 1,
+			"time": 3000,
+			"variance": 100
 		},
-		"accelerate": 500,
-		"bannedSpawn": [
-			[
-				200,
-				1720,
-				200,
-				880
-			]
-		],
-		"brake": -500,
-		"reload": 1200,
-		"reloadConsistency": 100,
-		"rotation": 1.7,
-		"events" : []
+		{
+			"action": "brake",
+			"strength": 0,
+			"time": 1000,
+			"variance": 100
+		}
+	],
+	"accelerate": 500,
+	"bannedSpawn": [
+		[
+			200,
+			1720,
+			200,
+			880
+		]
+	],
+	"brake": -500,
+	"bullet": {
+		"speed": 700
 	},
-	"player": {
-		"accelerate": 600,
-		"bullet": {
-			"speed": 700
-		},
-		"brake": -600,
-		"reload": 1000,
-		"rotation": 2,
-		"abilityReload" : 5000,
-		"events" : [{"name" : "ability", "time": 2000, "stats" : [{"type": "set", "path" : ["player", "reload"], "value" : 500}, {"type": "set", "path" : ["player", "bullet", "speed"], "value" : 1500}]}]
+	"events": [
+
+	],
+	"reload": 1200,
+	"reloadConsistency": 100,
+	"rotation": 1.7
+},
+"global": {
+	"events": [
+		{
+			"name": "newRound",
+			"stats": [
+				{
+					"path": [
+						"global",
+						"scale"
+					],
+					"type": "change",
+					"value": -0.1
+				}
+			],
+			"time": 0
+		}
+	],
+	"friction": 0.2,
+	"scale": 1.5,
+	"waitAfterDeath": 1
+},
+"player": {
+	"abilityReload": 5000,
+	"accelerate": 600,
+	"brake": -600,
+	"bullet": {
+		"speed": 700
 	},
-	"version" : "0.3.0"
+	"events": [
+		{
+			"name": "ability",
+			"stats": [
+				{
+					"path": [
+						"player",
+						"reload"
+					],
+					"type": "set",
+					"value": 500
+				},
+				{
+					"path": [
+						"player",
+						"bullet",
+						"speed"
+					],
+					"type": "set",
+					"value": 1500
+				}
+			],
+			"time": 2000
+		}
+	],
+	"reload": 1000,
+	"rotation": 2
+},
+"version": "0.3.0"
 } 
 
 export var preferences: Dictionary = startPreference.duplicate() setget changed
 
 func _ready() -> void:
 	var file = File.new()
-	if file.file_exists(preference_file) and false:
+	if file.file_exists(preference_file):
 		file.open(preference_file, File.READ)
 		var data = parse_json(file.get_as_text())
 		file.close()

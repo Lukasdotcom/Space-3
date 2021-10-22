@@ -15,7 +15,7 @@ func _ready():
 	
 	
 func spawn(number: int) -> void:
-	Events.start_event("global", "newSpawning")
+	Events.start_event("global", "newRound")
 	for _x in range(number):
 		var fighter = load("res://src/fighters/Enemy.tscn")
 		fighter = fighter.instance()

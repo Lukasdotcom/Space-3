@@ -10,6 +10,7 @@ var _speed = 0.1
 var _last_shot = 0
 var _rng = RandomNumberGenerator.new()
 func _ready():
+	Events.start_event("enemy", "spawn")
 	_rng.randomize()
 	_last_shot = OS.get_ticks_msec() + _reload * _rng.randf()
 	Events.connect("changeValues",self,"settings_reloaded")
@@ -46,6 +47,7 @@ func _body_entered(body: Node) -> void: #Used to check is the enemy dies
 
 func _shoot(): #Used to shoot whenever possible
 	if _last_shot + _reload < OS.get_ticks_msec():
+		Events.start_event("enemy", "shoot")
 		_last_shot = OS.get_ticks_msec() + _random_float(_reload_random)
 		var bullet = load("res://src/fighters/Bullet.tscn")
 		bullet = bullet.instance()

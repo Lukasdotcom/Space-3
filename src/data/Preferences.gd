@@ -49,11 +49,11 @@ export(Dictionary) var startPreference: = {
 						"global",
 						"scale"
 					],
+					"time": 0,
 					"type": "change",
 					"value": -0.1
 				}
 			],
-			"time": 0
 		}
 	],
 	"friction": 0.2,
@@ -76,6 +76,7 @@ export(Dictionary) var startPreference: = {
 						"player",
 						"reload"
 					],
+					"time": 0,
 					"type": "set",
 					"value": 500
 				},
@@ -85,6 +86,7 @@ export(Dictionary) var startPreference: = {
 						"bullet",
 						"speed"
 					],
+					"time": 0,
 					"type": "set",
 					"value": 1500
 				}

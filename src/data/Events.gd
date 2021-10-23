@@ -8,17 +8,16 @@ func start_event(category: String, name: String) -> void: # Used to start an eve
 			for x in Preferences.preferences[category]["events"]:
 				if x["name"] == name:
 					var _preference_change = Preferences.preferences[category]["events"][_counter]["stats"]
-					var _timer_length = Preferences.preferences[category]["events"][_counter]["time"]
 					for y in _preference_change:
 						var timer = load("res://src/data/Event Timer.tscn")
 						timer = timer.instance()
 						if y["type"] == "set":
-							timer.information = {"length" : _timer_length,
+							timer.information = {"length" : y["time"],
 												"path" : y["path"].duplicate(),
 												"value" : get_value(y["path"].duplicate(), data.preferences),
 												"type" : "set"}
 						else:
-							timer.information = {"length" : _timer_length,
+							timer.information = {"length" : y["time"],
 												"path" : y["path"].duplicate(),
 												"value" : (-1 * y["value"]),
 												"type" : "change"}

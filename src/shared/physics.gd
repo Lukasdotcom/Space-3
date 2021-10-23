@@ -1,9 +1,16 @@
 extends KinematicBody2D
 class_name Physics
-var preferences = Preferences.preferences
-var _friction = preferences["friction"]
+var preferences = data.preferences
+var _friction = preferences["global"]["friction"]
 const FLOOR_NORMAL = Vector2.UP
 
+func _ready() -> void:
+	Events.connect("changeValues",self,"physics_set_reloaded")
+	physics_set_reloaded()
+
+func physics_set_reloaded():
+	self.set_scale(Vector2(preferences["global"]["scale"], preferences["global"]["scale"]))
+	_friction = preferences["global"]["friction"]
 
 func fix_rotation_calculation(angle: float) -> float: # Used to fix the calculation of the self.rotation_degrees
 	return (angle * -1 + 3.14159265/2)

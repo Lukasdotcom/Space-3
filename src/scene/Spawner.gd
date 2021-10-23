@@ -2,9 +2,20 @@ extends Node2D
 export var maxX = 1920
 export var maxY = 1080
 var _rng = RandomNumberGenerator.new()
+
 func _ready():
+	Events.start_event("global", "gameStart")
 	_rng.randomize()
+	var player = load("res://src/fighters/Player.tscn") # Spawns player
+	player = player.instance()
+	player.position = Vector2(840, 580)
+	player.rotation = 3.1415/2
+	get_node("/root/Arena/").call_deferred("add_child", player)
+	spawn(1) # Spawns 1 enemy
+	
+	
 func spawn(number: int) -> void:
+	Events.start_event("global", "newRound")
 	for _x in range(number):
 		var fighter = load("res://src/fighters/Enemy.tscn")
 		fighter = fighter.instance()
@@ -19,5 +30,5 @@ func spawn(number: int) -> void:
 				break
 		var _angle = (Vector2(maxX/2, maxY/2) - fighter.position).angle()
 		fighter.set_rotation(_angle + 3.141592/2)
-		get_node("/root/Arena/").add_child_below_node(get_node("/root/Arena/"),fighter)
+		get_node("/root/Arena/").call_deferred("add_child", fighter)
 

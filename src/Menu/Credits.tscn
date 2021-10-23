@@ -40,9 +40,9 @@ __meta__ = {
 [node name="Credits" type="RichTextLabel" parent="."]
 anchor_left = 0.00100746
 anchor_right = 0.00100746
-margin_left = 38.0657
+margin_left = 40.0
 margin_top = -600.0
-margin_right = 1918.07
+margin_right = 1920.0
 margin_bottom = -64.0
 theme = SubResource( 2 )
 bbcode_enabled = true
@@ -62,7 +62,7 @@ Inspiration: Space 2 on the Chrome Web Store.
 Engine: Godot v3.3.4
 Font: Roboto from Google
 If you want to contribute, report bugs request features, or ask questions go to github at https://github.com/Lukasdotcom/Space-3/
-For the official wiki go to https://github.com/Lukasdotcom/Space-3/wiki"
+The official wiki is at https://github.com/Lukasdotcom/Space-3/wiki"
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false

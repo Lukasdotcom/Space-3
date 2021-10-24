@@ -6,9 +6,9 @@
 [node name="Main Menu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 1.25342
+margin_left = 2.47266
 margin_top = 5.16812
-margin_right = 1.25342
+margin_right = 2.47266
 margin_bottom = 5.16821
 theme = ExtResource( 2 )
 __meta__ = {
@@ -41,12 +41,10 @@ __meta__ = {
 }
 
 [node name="Credits" type="Button" parent="."]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -165.0
-margin_top = 632.795
-margin_right = 187.0
-margin_bottom = 694.795
+margin_left = 795.0
+margin_top = 627.919
+margin_right = 1147.0
+margin_bottom = 689.919
 text = "Credits"
 __meta__ = {
 "_edit_use_anchors_": false

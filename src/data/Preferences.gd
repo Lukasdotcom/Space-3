@@ -90,8 +90,7 @@ export(Dictionary) var startPreference: = {
 					"type": "set",
 					"value": 1500
 				}
-			],
-			"time": 2000
+			]
 		}
 	],
 	"reload": 1000,

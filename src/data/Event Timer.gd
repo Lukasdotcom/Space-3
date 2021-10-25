@@ -2,7 +2,10 @@ extends Timer
 var information
 
 func _ready():
-	self.start(information["length"]/1000)
+	if information["length"] <= 0:
+		finish()
+	self.set_wait_time(information["length"]/1000)
+	self.start()
 	get_node("/root/Arena/Timer").connect("timeout", self, "finish")
 
 func finish(): # Deletes the node

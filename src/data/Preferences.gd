@@ -76,7 +76,7 @@ export(Dictionary) var startPreference: = {
 						"player",
 						"reload"
 					],
-					"time": 0,
+					"time": 2000,
 					"type": "set",
 					"value": 500
 				},
@@ -86,7 +86,7 @@ export(Dictionary) var startPreference: = {
 						"bullet",
 						"speed"
 					],
-					"time": 0,
+					"time": 2000,
 					"type": "set",
 					"value": 1500
 				}

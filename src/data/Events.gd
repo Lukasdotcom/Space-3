@@ -46,3 +46,6 @@ func change_value(path: Array, value, type: String, preference: Dictionary) -> D
 		elif type == "change":
 			preference[path_name] += value
 	return preference
+
+func changed_value(): # Emits signal that value was changed
+	emit_signal("changeValues")

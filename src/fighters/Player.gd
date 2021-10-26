@@ -1,4 +1,6 @@
 extends Physics
+onready var _sprite: Sprite = $fighter # Gets the sprite for the player
+var _color = preferences["player"]["color"]
 var _brake = preferences["player"]["brake"]
 var _accelerate = preferences["player"]["accelerate"]
 var _rotation = preferences["player"]["rotation"]
@@ -12,8 +14,10 @@ signal death # emitted on death of player
 func _ready() -> void:
 	self.connect("death",get_node("/root/Arena/"),"on_player_death")
 	Events.connect("changeValues",self,"settings_reloaded")
+	_sprite.set_self_modulate(Color(_color["red"], _color["green"], _color["blue"], _color["alpha"]))
 
 func settings_reloaded():
+	_sprite.set_self_modulate(Color(_color["red"], _color["green"], _color["blue"], _color["alpha"]))
 	_brake = preferences["player"]["brake"]
 	_accelerate = preferences["player"]["accelerate"]
 	_rotation = preferences["player"]["rotation"]

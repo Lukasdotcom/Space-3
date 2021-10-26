@@ -12,8 +12,13 @@ func _ready():
 	player.rotation = 3.1415/2
 	get_node("/root/Arena/").call_deferred("add_child", player)
 	spawn(1) # Spawns 1 enemy
+	settings_reloaded()
+	Events.connect("changeValues",self,"settings_reloaded")
 	
-	
+func settings_reloaded():
+	var _color = data.preferences["global"]["backgroundColor"]
+	VisualServer.set_default_clear_color(Color(_color["red"], _color["green"], _color["blue"]))
+
 func spawn(number: int) -> void:
 	Events.start_event("global", "newRound")
 	for _x in range(number):

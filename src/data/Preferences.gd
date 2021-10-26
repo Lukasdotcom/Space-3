@@ -30,7 +30,19 @@ export(Dictionary) var startPreference: = {
 	],
 	"brake": -500,
 	"bullet": {
+		"color" : {
+			"alpha": 1,
+			"blue": 1,
+			"green" : 1,
+			"red" : 1
+		},
 		"speed": 700
+	},
+	"color" : {
+		"alpha": 1,
+		"blue": 0,
+		"green" : 0,
+		"red" : 1
 	},
 	"events": [
 
@@ -40,6 +52,11 @@ export(Dictionary) var startPreference: = {
 	"rotation": 1.7
 },
 "global": {
+	"backgroundColor" : {
+		"blue": 0.301961,
+		"green" : 0.301961,
+		"red" : 0.301961
+	},
 	"events": [
 		{
 			"name": "newRound",
@@ -65,7 +82,19 @@ export(Dictionary) var startPreference: = {
 	"accelerate": 600,
 	"brake": -600,
 	"bullet": {
+		"color" : {
+			"alpha": 1,
+			"blue": 1,
+			"green" : 1,
+			"red" : 1
+		},
 		"speed": 700
+	},
+	"color" : {
+		"alpha": 1,
+		"blue": 1,
+		"green" : 0,
+		"red" : 0
 	},
 	"events": [
 		{

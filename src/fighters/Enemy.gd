@@ -1,4 +1,6 @@
 extends Physics
+onready var _sprite: Sprite = $fighter # Gets the sprite for the player
+var _color = preferences["enemy"]["color"]
 var _brake = preferences["enemy"]["brake"]
 var _accelerate = preferences["enemy"]["accelerate"]
 var _rotation = preferences["enemy"]["rotation"]
@@ -14,6 +16,7 @@ func _ready():
 	_rng.randomize()
 	_last_shot = OS.get_ticks_msec() + _reload * _rng.randf()
 	Events.connect("changeValues",self,"settings_reloaded")
+	_sprite.set_self_modulate(Color(_color["red"], _color["green"], _color["blue"], _color["alpha"]))
 
 func settings_reloaded():
 	_brake = preferences["enemy"]["brake"]
@@ -21,6 +24,7 @@ func settings_reloaded():
 	_rotation = preferences["enemy"]["rotation"]
 	_reload = preferences["enemy"]["reload"]
 	_reload_random = -1 * preferences["enemy"]["reloadConsistency"]
+	_sprite.set_self_modulate(Color(_color["red"], _color["green"], _color["blue"], _color["alpha"]))
 
 func _physics_process(delta: float) -> void:
 	_shoot()

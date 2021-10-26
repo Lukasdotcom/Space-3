@@ -125,7 +125,7 @@ export(Dictionary) var startPreference: = {
 	"reload": 1000,
 	"rotation": 2
 },
-"version": "0.3.0"
+"version": "0.3.3"
 } 
 
 export var preferences: Dictionary = startPreference.duplicate() setget changed
@@ -166,6 +166,12 @@ func changed(value: Dictionary) -> void:
 		preferences.erase("waitAfterDeath")
 		preferences.erase("friction")
 		preferences.erase("bullet")
+	if preferences["version"] == "0.3.0": # adds all the color preferences to the default colors
+		preferences["enemy"]["bullet"]["color"] = {"alpha": 1, "blue": 1, "green" : 1, "red" : 1}
+		preferences["enemy"]["color"] = {"alpha": 1, "blue": 0, "green" : 0, "red" : 1}
+		preferences["global"]["backgroundColor"] = {"blue": 0.301961, "green" : 0.301961, "red" : 0.301961}
+		preferences["player"]["bullet"]["color"] = {"alpha": 1, "blue": 1, "green" : 1, "red" : 1}
+		preferences["player"]["color"] = {"alpha": 1, "blue": 1, "green" : 0, "red" : 0}
 	if preferences["version"] != startPreference["version"]:
 		reset()
 	save()

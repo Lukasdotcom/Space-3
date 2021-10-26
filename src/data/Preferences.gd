@@ -32,8 +32,8 @@ export(Dictionary) var startPreference: = {
 	"bullet": {
 		"color" : {
 			"alpha": 1,
-			"blue": 1,
-			"green" : 1,
+			"blue": 0.5,
+			"green" : 0.5,
 			"red" : 1
 		},
 		"speed": 700
@@ -53,9 +53,9 @@ export(Dictionary) var startPreference: = {
 },
 "global": {
 	"backgroundColor" : {
-		"blue": 0.301961,
-		"green" : 0.301961,
-		"red" : 0.301961
+		"blue": 0.1,
+		"green" : 0.1,
+		"red" : 0.1
 	},
 	"events": [
 		{
@@ -118,6 +118,26 @@ export(Dictionary) var startPreference: = {
 					"time": 2000,
 					"type": "set",
 					"value": 1500
+				},
+				{
+					"path": [
+						"player",
+						"color",
+						"green"
+					],
+					"time": 2000,
+					"type": "change",
+					"value": 0.2
+				},
+				{
+					"path": [
+						"player",
+						"color",
+						"green"
+					],
+					"time": 5000,
+					"type": "change",
+					"value": 0.2
 				}
 			]
 		}

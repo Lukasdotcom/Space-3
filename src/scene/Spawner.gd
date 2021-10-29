@@ -18,6 +18,12 @@ func _ready():
 func settings_reloaded():
 	var _color = data.preferences["global"]["backgroundColor"]
 	VisualServer.set_default_clear_color(Color(_color["red"], _color["green"], _color["blue"]))
+	var _controls = data.preferences["player"]["controls"]
+	for _change in _controls:
+		InputMap.action_erase_events(_change)
+		var _event_press = InputEventKey.new()
+		_event_press.set_scancode(_controls[_change])
+		InputMap.action_add_event("right", _event_press)
 
 func spawn(number: int) -> void:
 	Events.start_event("global", "newRound")

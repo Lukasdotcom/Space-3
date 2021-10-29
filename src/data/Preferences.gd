@@ -96,7 +96,15 @@ export(Dictionary) var startPreference: = {
 		"green" : 0,
 		"red" : 0
 	},
-	"events": [
+	"controls" : {
+		"accelerate" : 16777232,
+		"brake" : 16777234,
+		"right" : 16777233,
+		"left" : 16777231,
+		"shoot" : 32,
+		"ability" : 65
+	},
+	"events" : [
 		{
 			"name": "ability",
 			"stats": [
@@ -145,7 +153,7 @@ export(Dictionary) var startPreference: = {
 	"reload": 1000,
 	"rotation": 2
 },
-"version": "0.3.3"
+"version": "0.3.4"
 } 
 
 export var preferences: Dictionary = startPreference.duplicate() setget changed
@@ -165,35 +173,37 @@ func reset() -> void:
 	save()
 
 
-func changed(value: Dictionary) -> void:	
-	preferences = value
-	if not preferences.has_all(["version"]):
+func changed(value: Dictionary) -> void:
+	if not value.has_all(["version"]):
 		reset()
-	if preferences["version"] == "0.2.2": # Updates the preferences to be compatible with new version
-		preferences["version"] = "0.3.0"
-		preferences["global"] = {
+	if value["version"] == "0.2.2": # Updates the preferences to be compatible with new version
+		value["version"] = "0.3.0"
+		value["global"] = {
 					"events": [],
-					"friction": preferences["friction"],
-					"scale": preferences["scale"],
-					"waitAfterDeath": preferences["waitAfterDeath"]
+					"friction": value["friction"],
+					"scale": value["scale"],
+					"waitAfterDeath": value["waitAfterDeath"]
 						}
-		preferences["player"]["events"] = []
-		preferences["player"]["bullet"] = preferences["bullet"]
-		preferences["player"]["abilityReload"] = startPreference["player"]["abilityReload"]
-		preferences["enemy"]["events"] = []
-		preferences["enemy"]["bullet"] = preferences["bullet"]
-		preferences.erase("scale")
-		preferences.erase("waitAfterDeath")
-		preferences.erase("friction")
-		preferences.erase("bullet")
-	if preferences["version"] == "0.3.0": # adds all the color preferences to the default colors
-		preferences["enemy"]["bullet"]["color"] = {"alpha": 1, "blue": 1, "green" : 1, "red" : 1}
-		preferences["enemy"]["color"] = {"alpha": 1, "blue": 0, "green" : 0, "red" : 1}
-		preferences["global"]["backgroundColor"] = {"blue": 0.301961, "green" : 0.301961, "red" : 0.301961}
-		preferences["player"]["bullet"]["color"] = {"alpha": 1, "blue": 1, "green" : 1, "red" : 1}
-		preferences["player"]["color"] = {"alpha": 1, "blue": 1, "green" : 0, "red" : 0}
-	if preferences["version"] != startPreference["version"]:
+		value["player"]["events"] = []
+		value["player"]["bullet"] = value["bullet"]
+		value["player"]["abilityReload"] = startPreference["player"]["abilityReload"]
+		value["enemy"]["events"] = []
+		value["enemy"]["bullet"] = value["bullet"]
+		value.erase("scale")
+		value.erase("waitAfterDeath")
+		value.erase("friction")
+		value.erase("bullet")
+	if value["version"] == "0.3.0": # adds all the color preferences to the default colors
+		value["enemy"]["bullet"]["color"] = {"alpha": 1, "blue": 1, "green" : 1, "red" : 1}
+		value["enemy"]["color"] = {"alpha": 1, "blue": 0, "green" : 0, "red" : 1}
+		value["global"]["backgroundColor"] = {"blue": 0.301961, "green" : 0.301961, "red" : 0.301961}
+		value["player"]["bullet"]["color"] = {"alpha": 1, "blue": 1, "green" : 1, "red" : 1}
+		value["player"]["color"] = {"alpha": 1, "blue": 1, "green" : 0, "red" : 0}
+	if value["version"] == "0.3.3":
+		value["controls"] = startPreference["controls"]
+	if value["version"] != startPreference["version"]:
 		reset()
+	preferences = value
 	save()
 
 

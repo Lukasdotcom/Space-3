@@ -25,9 +25,9 @@ func settings_reloaded():
 	_ability_reload = preferences["player"]["abilityReload"]
 
 func _physics_process(delta: float) -> void:
-	if Input.is_action_just_released("shoot"):
+	if Input.is_action_just_pressed("shoot"):
 		_shoot()
-	if Input.is_action_just_released("ability"):
+	if Input.is_action_just_pressed("ability"):
 		_ability()
 	_speed *= pow(_friction, delta)
 	_speed += Input.get_action_strength("accelerate") * _accelerate * delta

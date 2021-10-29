@@ -8,6 +8,12 @@
 [node name="Arena" type="Node2D"]
 script = ExtResource( 6 )
 
+[node name="Game Interface" parent="." instance=ExtResource( 7 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 1920.0
+margin_bottom = 1080.0
+
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 2 )
 collision_layer = 4
@@ -20,11 +26,5 @@ position = Vector2( 899.104, 525.821 )
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
-
-[node name="Game Interface" parent="." instance=ExtResource( 7 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 1920.0
-margin_bottom = 1080.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

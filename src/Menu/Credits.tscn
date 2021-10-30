@@ -24,7 +24,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 9.9 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 40, 931.97 ), Vector2( 40, -600 ) ]
+"values": [ Vector2( 40, 1098.32 ), Vector2( 40, -600 ) ]
 }
 
 [node name="Credits" type="Control"]
@@ -38,12 +38,12 @@ __meta__ = {
 }
 
 [node name="Credits" type="RichTextLabel" parent="."]
-anchor_left = 0.00100746
-anchor_right = 0.00100746
-margin_left = 40.0
+anchor_left = 0.501007
+anchor_right = 0.501007
+margin_left = -921.934
 margin_top = -600.0
-margin_right = 1920.0
-margin_bottom = -64.0
+margin_right = 958.066
+margin_bottom = -64.0004
 theme = SubResource( 2 )
 bbcode_enabled = true
 bbcode_text = "[center]Credits[/center]

@@ -3,7 +3,7 @@ export var maxX = 1920
 export var maxY = 1080
 var _rng = RandomNumberGenerator.new()
 
-func _ready():
+func _ready(): # Will get the game ready
 	Events.start_event("global", "gameStart")
 	_rng.randomize()
 	var player = load("res://src/fighters/Player.tscn") # Spawns player
@@ -15,22 +15,22 @@ func _ready():
 	settings_reloaded()
 	Events.connect("changeValues",self,"settings_reloaded")
 	
-func settings_reloaded():
+func settings_reloaded(): # Will make sure the settings are right.
 	var _color = data.preferences["global"]["backgroundColor"]
 	VisualServer.set_default_clear_color(Color(_color["red"], _color["green"], _color["blue"]))
-	var _controls = data.preferences["player"]["controls"]
-	for _change in _controls:
-		InputMap.action_erase_events(_change)
+	var _controls = data.preferences["player"]["controls"] # Will get all the controls for the player
+	for change in _controls: # Will change each control.
+		InputMap.action_erase_events(change)
 		var _event_press = InputEventKey.new()
-		_event_press.set_scancode(_controls[_change])
-		InputMap.action_add_event("right", _event_press)
+		_event_press.set_scancode(_controls[change])
+		InputMap.action_add_event(change, _event_press)
 
-func spawn(number: int) -> void:
+func spawn(number: int) -> void: # Used to spawn an emeny
 	Events.start_event("global", "newRound")
 	for _x in range(number):
 		var fighter = load("res://src/fighters/Enemy.tscn")
 		fighter = fighter.instance()
-		while true:
+		while true: # Generates locations until a valid location is found for the fighter.
 			fighter.position.x = _rng.randf() * maxX
 			fighter.position.y = _rng.randf() * maxY
 			var _exit = true

@@ -199,8 +199,10 @@ func changed(value: Dictionary) -> void:
 		value["global"]["backgroundColor"] = {"blue": 0.301961, "green" : 0.301961, "red" : 0.301961}
 		value["player"]["bullet"]["color"] = {"alpha": 1, "blue": 1, "green" : 1, "red" : 1}
 		value["player"]["color"] = {"alpha": 1, "blue": 1, "green" : 0, "red" : 0}
+		value["version"] = "0.3.3"
 	if value["version"] == "0.3.3":
 		value["player"]["controls"] = startPreference["player"]["controls"]
+		value["version"] = "0.3.4"
 	if value["version"] != startPreference["version"]:
 		reset()
 	preferences = value

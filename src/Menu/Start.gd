@@ -15,3 +15,7 @@ func _on_Quit_button_up() -> void:
 
 func _on_Credits_button_up() -> void:
 	get_tree().change_scene("res://src/Menu/Credits.tscn")
+
+
+func _on_Online_button_up() -> void:
+	get_tree().change_scene("res://src/Menu/Online Addon/Menu.tscn")

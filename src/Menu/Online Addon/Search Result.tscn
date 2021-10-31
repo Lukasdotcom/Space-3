@@ -1,0 +1,54 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/main_theme.tres" type="Theme" id=1]
+[ext_resource path="res://src/Menu/Online Addon/Search Result.gd" type="Script" id=2]
+
+[node name="Search Result" type="Control"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -960.0
+margin_right = 960.0
+margin_bottom = 100.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="RichTextLabel" parent="."]
+margin_right = 400.0
+margin_bottom = 100.0
+text = "Title"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Description" type="RichTextLabel" parent="."]
+margin_left = 400.0
+margin_right = 1300.0
+margin_bottom = 100.0
+text = "Description"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Author" type="RichTextLabel" parent="."]
+margin_left = 1318.7
+margin_top = 0.934
+margin_right = 1718.7
+margin_bottom = 100.934
+text = "Author"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Download" type="Button" parent="."]
+margin_left = 1720.0
+margin_right = 1920.0
+margin_bottom = 100.0
+text = "Download"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="button_up" from="Download" to="." method="_on_Download_button_up"]

@@ -16,14 +16,15 @@ func _on_Search_button_up() -> void: # Used to search
 	add_child(http_request)
 	var _http: HTTPRequest = $HTTPRequest
 	_http.connect("request_completed",self,"_search_done")
-
-
-func _search_done(result, response_code, headers, body): # Loads all the search results
+	# Removes all the old search results
 	var _children = _vbox.get_children()
 	for x in _children:
 		x.queue_free()
+
+
+func _search_done(result, response_code, headers, body): # Loads all the search results
 	var _search_result = JSON.parse(body.get_string_from_utf8()).result
-	if _search_result:
+	if _search_result: # Checks if there is something in the response and then goes through every response and adds it to the results
 		for _result in _search_result:
 			var _result_answer = load("res://src/Menu/Online Addon/Search Result.tscn")
 			_result_answer = _result_answer.instance()

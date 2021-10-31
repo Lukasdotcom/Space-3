@@ -1,7 +1,8 @@
 extends Node
 
 const preference_file = "user://preferences.json"
-
+var key = ""
+var userName = "" 
 
 export(Dictionary) var startPreference: = {
 "enemy": {

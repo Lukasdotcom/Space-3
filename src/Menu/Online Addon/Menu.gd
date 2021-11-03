@@ -24,6 +24,16 @@ func _on_Search_button_up() -> void: # Used to search
 
 func _search_done(result, response_code, headers, body): # Loads all the search results
 	var _search_result = JSON.parse(body.get_string_from_utf8()).result
+	if Preferences.userName:
+		var _upload = load("res://src/Menu/Online Addon/Search Result.tscn")
+		_upload = _upload.instance()
+		_upload.information = {
+			"title" : "",
+			"owner" : Preferences.userName,
+			"description" : "",
+			"id" : "",
+		}
+		_vbox.call_deferred("add_child", _upload)
 	if _search_result: # Checks if there is something in the response and then goes through every response and adds it to the results
 		for _result in _search_result:
 			var _result_answer = load("res://src/Menu/Online Addon/Search Result.tscn")

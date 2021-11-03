@@ -38,6 +38,9 @@ margin_right = 1895.0
 margin_bottom = 86.5716
 text = "Online Addons"
 align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Search" type="Button" parent="."]
 margin_left = 1715.33

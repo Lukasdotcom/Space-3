@@ -1,6 +1,7 @@
 extends HTTPRequest
 var information = {}
 var domain = "http://0.0.0.0"
+var loading = self
 
 func _ready() -> void:
 	var _link = domain + information["link"]
@@ -14,6 +15,10 @@ func _ready() -> void:
 		for x in information["post"]:
 			_data += x + "=" + str(information["post"][x]).percent_encode() + "&"
 		self.request(_link, ["Content-type: application/x-www-form-urlencoded"], true, HTTPClient.METHOD_POST, _data)
+	loading = load("res://src/shared/Loading.tscn")
+	loading = loading.instance()
+	get_node("/root").call_deferred("add_child", loading)
 
 func _on_HTTPRequest_request_completed(result: int, response_code: int, headers: PoolStringArray, body: PoolByteArray) -> void:
+	loading.queue_free()
 	self.queue_free()

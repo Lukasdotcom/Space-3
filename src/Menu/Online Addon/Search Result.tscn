@@ -26,15 +26,36 @@ __meta__ = {
 [node name="Title2" type="TextEdit" parent="."]
 visible = false
 margin_right = 300.0
+margin_bottom = 50.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Author" type="RichTextLabel" parent="."]
+margin_left = 300.0
+margin_right = 600.0
+margin_bottom = 50.0
+text = "Author"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Likes" type="RichTextLabel" parent="."]
+margin_left = 300.0
+margin_top = 50.0
+margin_right = 600.0
 margin_bottom = 100.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Description" type="RichTextLabel" parent="."]
-margin_left = 300.0
-margin_right = 1200.0
-margin_bottom = 100.0
+anchor_top = 0.0128882
+anchor_bottom = 0.0128882
+margin_left = 600.0
+margin_top = -1.28882
+margin_right = 1500.0
+margin_bottom = 98.7112
 text = "Description"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -42,18 +63,19 @@ __meta__ = {
 
 [node name="Description2" type="TextEdit" parent="."]
 visible = false
-margin_left = 300.0
-margin_right = 1200.0
+margin_left = 600.0
+margin_right = 1500.0
 margin_bottom = 100.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Author" type="RichTextLabel" parent="."]
-margin_left = 1200.0
-margin_right = 1500.0
+[node name="Like" type="Button" parent="."]
+visible = false
+margin_left = 1500.0
+margin_right = 1620.0
 margin_bottom = 100.0
-text = "Author"
+text = "Like"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -85,6 +107,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[connection signal="button_up" from="Like" to="." method="_on_Like_button_up"]
 [connection signal="button_up" from="Delete" to="." method="_on_Delete_button_up"]
 [connection signal="button_up" from="Edit" to="." method="_on_Edit_button_up"]
 [connection signal="button_up" from="Download" to="." method="_on_Download_button_up"]

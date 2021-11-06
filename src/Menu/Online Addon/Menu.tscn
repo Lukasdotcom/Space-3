@@ -13,9 +13,10 @@ shortcut = SubResource( 1 )
 [node name="Online Addon" type="Control"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -963.417
-margin_right = 956.583
-margin_bottom = 1080.0
+margin_left = -960.747
+margin_top = 1.33478
+margin_right = 959.253
+margin_bottom = 1081.33
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
 __meta__ = {
@@ -62,27 +63,26 @@ __meta__ = {
 }
 
 [node name="Title" type="RichTextLabel" parent="Header"]
-margin_right = 400.0
-margin_bottom = 100.0
+margin_right = 300.0
+margin_bottom = 50.0
 text = "Title"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Description" type="RichTextLabel" parent="Header"]
-margin_left = 400.0
-margin_right = 1300.0
-margin_bottom = 100.0
+margin_left = 600.0
+margin_right = 1500.0
+margin_bottom = 50.0
 text = "Description"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Author" type="RichTextLabel" parent="Header"]
-margin_left = 1318.7
-margin_top = 0.934
-margin_right = 1718.7
-margin_bottom = 100.934
+margin_left = 300.0
+margin_right = 600.0
+margin_bottom = 50.0
 text = "Author"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -94,9 +94,9 @@ anchor_top = 0.00132265
 anchor_right = -0.000743993
 anchor_bottom = 0.00132265
 margin_left = 1.42847
-margin_top = 298.572
+margin_top = 248.572
 margin_right = 1921.43
-margin_bottom = 998.572
+margin_bottom = 948.572
 size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false

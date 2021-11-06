@@ -8,6 +8,8 @@ onready var description2: TextEdit = $Description2
 onready var editButton: Button = $Edit
 onready var delete: Button = $Delete
 onready var download: Button = $Download
+onready var likes: RichTextLabel = $Likes
+onready var likeButton: Button = $Like
 
 var information
 
@@ -22,12 +24,18 @@ func _ready() -> void: # Will load the information
 	if not information["owner"] == Preferences.userName: # Will check if that preference is owned by that user
 		editButton.disabled = true
 		delete.visible = false
+		if Preferences.userName:
+			if information["liked"]:
+				likeButton.text = "Unlike"
+			likeButton.visible = true
 	if not information["id"]: # Will check if it is a new upload choice
 		delete.visible = false
 		editButton.visible = false
 		title2.visible = true
 		description2.visible = true
 		download.set_text("Upload")
+	else:
+		likes.text = "%s Likes" % information["likes"]
 
 
 func _on_Download_button_up() -> void: # Will download the preferences or upload them to overwrite the old ones
@@ -38,14 +46,14 @@ func _on_Download_button_up() -> void: # Will download the preferences or upload
 		_update(true)
 
 func _on_Delete_button_up() -> void: # Will delete the entry if this is owned by that owner
-	if Preferences.userName == information["owner"]:
-		var http_request = load("res://src/shared/HTTPRequest.tscn")
-		http_request = http_request.instance()
-		http_request.information["link"] = "/api/space3.php"
-		http_request.information["post"] = {
-			"delete" : information["id"]
-		}
-		self.queue_free()
+	var http_request = load("res://src/shared/HTTPRequest.tscn")
+	http_request = http_request.instance()
+	http_request.information["link"] = "/api/space3.php"
+	http_request.information["post"] = {
+		"delete" : information["id"]
+	}
+	add_child(http_request)
+	self.visible = false
 
 func _on_Edit_button_up() -> void: # Will either save or edit the entry
 	if editButton.get_text() == "Edit": # Enables the editing
@@ -77,3 +85,20 @@ func _update(overwrite: bool): # Used to update a preference
 	description.text = description2.text
 	delete.visible = true
 	editButton.visible = true
+
+
+func _on_Like_button_up() -> void: # Is used to like or unlike a preference
+	var http_request = load("res://src/shared/HTTPRequest.tscn")
+	http_request = http_request.instance()
+	http_request.information["link"] = "/api/space3.php"
+	http_request.information["post"] = {
+		"like" : information["id"]
+	}
+	add_child(http_request)
+	if likeButton.text == "Unlike":
+		likeButton.text = "Like"
+		information["likes"] -= 1
+	else:
+		likeButton.text = "Unlike"
+		information["likes"] += 1
+	likes.text = "%s Likes" % information["likes"] 

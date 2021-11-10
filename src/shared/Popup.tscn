@@ -1,0 +1,50 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/main_theme.tres" type="Theme" id=1]
+[ext_resource path="res://src/shared/Popup.gd" type="Script" id=2]
+
+[node name="Popup" type="Control"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -960.0
+margin_right = 960.0
+margin_bottom = 1080.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_top = 1.09656
+margin_right = 1920.0
+margin_bottom = 1081.1
+color = Color( 0, 0, 0, 0.392157 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="text" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -753.0
+margin_right = 754.0
+margin_bottom = 482.0
+text = "dhghfghfghfghgfh"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -130.0
+margin_top = 655.448
+margin_right = 130.0
+margin_bottom = 706.448
+text = "Close"
+
+[connection signal="button_up" from="Button" to="." method="_on_Button_button_up"]

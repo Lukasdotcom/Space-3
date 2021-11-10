@@ -4,7 +4,11 @@ var domain = "http://0.0.0.0"
 var loading = self
 
 func _ready() -> void:
-	var _link = domain + information["link"]
+	var _link = ""
+	if information["link"].left(4) == "http":
+		_link = information["link"]
+	else:
+		_link = domain + information["link"]
 	if information.has_all(["get"]): # Used for get requests
 		_link += "?key=" + Preferences.key + "&"
 		for x in information["get"]:

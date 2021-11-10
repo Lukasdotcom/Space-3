@@ -24,7 +24,7 @@ func _on_Search_button_up() -> void: # Used to search
 
 func _search_done(result, response_code, headers, body): # Loads all the search results
 	var _search_result = JSON.parse(body.get_string_from_utf8()).result
-	if Preferences.userName:
+	if Preferences.userName: # Used to generate an upload field when logged in.
 		var _upload = load("res://src/Menu/Online Addon/Search Result.tscn")
 		_upload = _upload.instance()
 		_upload.information = {

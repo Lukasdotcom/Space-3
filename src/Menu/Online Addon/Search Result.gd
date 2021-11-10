@@ -9,6 +9,7 @@ onready var editButton: Button = $Edit
 onready var delete: Button = $Delete
 onready var download: Button = $Download
 onready var likes: RichTextLabel = $Likes
+onready var downloads: RichTextLabel = $Downloads
 onready var likeButton: Button = $Like
 
 var information
@@ -36,14 +37,33 @@ func _ready() -> void: # Will load the information
 		download.set_text("Upload")
 	else:
 		likes.text = "%s Likes" % information["likes"]
+		downloads.text = "%s Downloads" % information["downloads"]
 
 
 func _on_Download_button_up() -> void: # Will download the preferences or upload them to overwrite the old ones
 	if download.get_text() == "Download": # Checks if it is a download action
-		Preferences.changed(JSON.parse(information["preferences"]).result)
-		get_tree().change_scene("res://src/Menu/Edit Preference.tscn")
+		# Will actually download the data
+		var http_request = load("res://src/shared/HTTPRequest.tscn")
+		http_request = http_request.instance()
+		http_request.information["link"] = "/api/space3.php"
+		http_request.information["get"] = {
+			"download" : information["id"]
+		}
+		add_child(http_request)
+		http_request.connect("request_completed",self,"finish_download")
 	else:
 		_update(true)
+
+func finish_download(result, response_code, headers, body): # Used to update preferences after the download is done.
+	if response_code == 200:
+		Preferences.changed(JSON.parse(body.get_string_from_utf8()).result)
+		get_tree().change_scene("res://src/Menu/Edit Preference.tscn")
+	else:
+		var _popup = load("res://src/shared/Popup.tscn")
+		_popup = _popup.instance()
+		_popup.text = body.get_string_from_utf8()
+		get_node("/root").call_deferred("add_child", _popup)
+
 
 func _on_Delete_button_up() -> void: # Will delete the entry if this is owned by that owner
 	var http_request = load("res://src/shared/HTTPRequest.tscn")

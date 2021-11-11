@@ -2,9 +2,7 @@ extends Control
 var information = {}
 onready var controls: CheckBox = $Controls
 
-
 func _on_Button_button_up() -> void:
-	print(1)
 	if information:
 		var flags = []
 		if controls.pressed:

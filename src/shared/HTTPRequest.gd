@@ -1,6 +1,6 @@
 extends HTTPRequest
 var information = {}
-var domain = "http://0.0.0.0"
+var domain = "https://lschaefer.xyz"
 var loading = self
 
 func _ready() -> void:

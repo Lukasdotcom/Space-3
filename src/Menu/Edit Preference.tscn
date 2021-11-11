@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://assets/main_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/Menu/Text Preference.gd" type="Script" id=2]
+[ext_resource path="res://assets/Bold.tres" type="Theme" id=3]
 
 [node name="Edit Preference" type="Control"]
 anchor_left = 0.5
@@ -17,10 +18,11 @@ __meta__ = {
 [node name="Title" type="Label" parent="."]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -360.0
-margin_top = 18.9697
-margin_right = 360.0
-margin_bottom = 162.97
+margin_left = -492.0
+margin_top = 27.8314
+margin_right = 492.0
+margin_bottom = 171.832
+theme = ExtResource( 3 )
 text = "Edit Preferences Here!
 Warning some changes may cause crashes."
 align = 1

@@ -18,6 +18,7 @@ func version_check(result, response_code, headers, body): # Will check if the ve
 			_popup = _popup.instance()
 			_popup.text = "You are not on the latest version. The latest version is " + version.lstrip("refs/tags/") + ". To download this go to the official github."
 			get_node("/root").call_deferred("add_child", _popup)
+		Preferences.latestVersionCheck = false
 	
 
 func _button_up() -> void: # Used to start the game

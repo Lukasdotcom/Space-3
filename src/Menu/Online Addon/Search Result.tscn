@@ -1,0 +1,121 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/main_theme.tres" type="Theme" id=1]
+[ext_resource path="res://src/Menu/Online Addon/Search Result.gd" type="Script" id=2]
+
+[node name="Search Result" type="Control"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -960.0
+margin_right = 960.0
+margin_bottom = 100.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="RichTextLabel" parent="."]
+margin_right = 300.0
+margin_bottom = 50.0
+text = "Title"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title2" type="TextEdit" parent="."]
+visible = false
+margin_right = 300.0
+margin_bottom = 50.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Downloads" type="RichTextLabel" parent="."]
+margin_top = 50.0
+margin_right = 300.0
+margin_bottom = 100.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Author" type="RichTextLabel" parent="."]
+margin_left = 300.0
+margin_right = 600.0
+margin_bottom = 50.0
+text = "Author"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Likes" type="RichTextLabel" parent="."]
+margin_left = 300.0
+margin_top = 50.0
+margin_right = 600.0
+margin_bottom = 100.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Description" type="RichTextLabel" parent="."]
+anchor_top = 0.0128882
+anchor_bottom = 0.0128882
+margin_left = 600.0
+margin_top = -1.28882
+margin_right = 1500.0
+margin_bottom = 98.7112
+text = "Description"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Description2" type="TextEdit" parent="."]
+visible = false
+margin_left = 600.0
+margin_right = 1500.0
+margin_bottom = 100.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Like" type="Button" parent="."]
+visible = false
+margin_left = 1500.0
+margin_right = 1620.0
+margin_bottom = 100.0
+text = "Like"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Delete" type="Button" parent="."]
+margin_left = 1500.0
+margin_right = 1620.0
+margin_bottom = 100.0
+text = "Delete"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Edit" type="Button" parent="."]
+margin_left = 1620.0
+margin_right = 1720.0
+margin_bottom = 100.0
+text = "Edit"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Download" type="Button" parent="."]
+margin_left = 1720.0
+margin_right = 1920.0
+margin_bottom = 100.0
+text = "Download"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="button_up" from="Like" to="." method="_on_Like_button_up"]
+[connection signal="button_up" from="Delete" to="." method="_on_Delete_button_up"]
+[connection signal="button_up" from="Edit" to="." method="_on_Edit_button_up"]
+[connection signal="button_up" from="Download" to="." method="_on_Download_button_up"]

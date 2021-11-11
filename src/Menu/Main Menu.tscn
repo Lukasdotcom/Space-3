@@ -61,13 +61,25 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Online" type="Button" parent="."]
+anchor_top = 0.00120827
+anchor_bottom = 0.00120827
+margin_left = 795.795
+margin_top = 732.477
+margin_right = 1147.79
+margin_bottom = 794.477
+text = "Online Addons"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Quit" type="Button" parent="."]
 anchor_top = 0.00120827
 anchor_bottom = 0.00120827
 margin_left = 795.0
-margin_top = 742.83
+margin_top = 842.523
 margin_right = 1147.0
-margin_bottom = 804.83
+margin_bottom = 904.523
 text = "Quit"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -76,4 +88,5 @@ __meta__ = {
 [connection signal="button_up" from="Start" to="Start" method="_button_up"]
 [connection signal="button_up" from="Credits" to="Start" method="_on_Credits_button_up"]
 [connection signal="button_up" from="Preferences" to="Start" method="_on_Preferences_button_up"]
+[connection signal="button_up" from="Online" to="Start" method="_on_Online_button_up"]
 [connection signal="button_up" from="Quit" to="Start" method="_on_Quit_button_up"]

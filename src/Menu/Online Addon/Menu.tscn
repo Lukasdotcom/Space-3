@@ -1,0 +1,125 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/main_theme.tres" type="Theme" id=1]
+[ext_resource path="res://src/Menu/Online Addon/Menu.gd" type="Script" id=2]
+[ext_resource path="res://src/Menu/Online Addon/Login Status.tscn" type="PackedScene" id=3]
+
+[sub_resource type="InputEventKey" id=1]
+scancode = 16777221
+
+[sub_resource type="ShortCut" id=2]
+shortcut = SubResource( 1 )
+
+[node name="Online Addon" type="Control"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -960.747
+margin_top = 1.33478
+margin_right = 959.253
+margin_bottom = 1081.33
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SearchText" type="LineEdit" parent="."]
+margin_left = 54.0
+margin_top = 119.0
+margin_right = 1633.0
+margin_bottom = 174.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_left = 17.0
+margin_top = 28.5716
+margin_right = 1895.0
+margin_bottom = 86.5716
+text = "Online Addons"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Search" type="Button" parent="."]
+margin_left = 1715.33
+margin_top = 119.0
+margin_right = 1873.33
+margin_bottom = 170.0
+shortcut = SubResource( 2 )
+text = "Search"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Header" type="Control" parent="."]
+margin_top = 201.428
+margin_bottom = 201.428
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="RichTextLabel" parent="Header"]
+margin_right = 300.0
+margin_bottom = 50.0
+text = "Title"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Description" type="RichTextLabel" parent="Header"]
+margin_left = 600.0
+margin_right = 1500.0
+margin_bottom = 50.0
+text = "Description"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Author" type="RichTextLabel" parent="Header"]
+margin_left = 300.0
+margin_right = 600.0
+margin_bottom = 50.0
+text = "Author"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+anchor_left = -0.000743993
+anchor_top = 0.00132265
+anchor_right = -0.000743993
+anchor_bottom = 0.00132265
+margin_left = 1.42847
+margin_top = 248.572
+margin_right = 1921.43
+margin_bottom = 948.572
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+margin_bottom = 700.0
+size_flags_vertical = 3
+custom_constants/separation = 100
+
+[node name="Login Status" parent="." instance=ExtResource( 3 )]
+
+[node name="Return" type="Button" parent="."]
+anchor_top = 0.00132265
+anchor_bottom = 0.00132265
+margin_left = 1700.0
+margin_top = 998.572
+margin_right = 1920.0
+margin_bottom = 1078.57
+text = "Return"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="button_up" from="Search" to="." method="_on_Search_button_up"]
+[connection signal="button_up" from="Return" to="." method="_on_Return_button_up"]

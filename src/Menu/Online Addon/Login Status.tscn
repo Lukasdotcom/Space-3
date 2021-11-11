@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/main_theme.tres" type="Theme" id=1]
+[ext_resource path="res://src/Menu/Online Addon/Login Status.gd" type="Script" id=2]
+
+[node name="Login Status" type="Control"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -50.0
+margin_right = 1920.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Status" type="Label" parent="."]
+margin_right = 591.0
+margin_bottom = 50.0
+text = "You are not logged in."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="."]
+margin_left = 371.99
+margin_right = 544.99
+margin_bottom = 51.0
+text = "Login/Signup"
+
+[connection signal="button_up" from="Button" to="." method="_on_Button_button_up"]

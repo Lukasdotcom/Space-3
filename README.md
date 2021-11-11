@@ -1,7 +1,7 @@
 # Space 3
  
  ## Goal of Game
- The goal of this is to make a very customizable and feature rich version of space 2. This is made in godot v3.3.4-stable
+ The goal of this is to make a very customizable and feature rich version of space 2. This is made in godot v3.4-stable
  
  ### Link to a web hosted version
  [Click Here](https://lschaefer.xyz/space3/)

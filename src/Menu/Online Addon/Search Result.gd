@@ -56,8 +56,10 @@ func _on_Download_button_up() -> void: # Will download the preferences or upload
 
 func finish_download(result, response_code, headers, body): # Used to update preferences after the download is done.
 	if response_code == 200:
-		Preferences.changed(JSON.parse(body.get_string_from_utf8()).result)
-		get_tree().change_scene("res://src/Menu/Edit Preference.tscn")
+		var _popup = load("res://src/Menu/Online Addon/Choices.tscn")
+		_popup = _popup.instance()
+		_popup.information = JSON.parse(body.get_string_from_utf8()).result
+		get_node("/root").call_deferred("add_child", _popup)
 	else:
 		var _popup = load("res://src/shared/Popup.tscn")
 		_popup = _popup.instance()

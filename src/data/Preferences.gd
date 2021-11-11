@@ -177,6 +177,10 @@ func reset() -> void:
 
 
 func changed(value: Dictionary) -> void:
+	changed_specific(value)
+
+
+func changed_specific(value: Dictionary, flags: Array = []) -> void:
 	if not value.has_all(["version"]):
 		reset()
 	if value["version"] == "0.2.2": # Updates the preferences to be compatible with new version
@@ -208,6 +212,8 @@ func changed(value: Dictionary) -> void:
 		value["version"] = "0.3.4"
 	if value["version"] != startPreference["version"]:
 		reset()
+	if flags.has("controls"): # Checks if controls should be ignored
+		value["player"]["controls"] = preferences["player"]["controls"].duplicate(true)
 	preferences = value
 	save()
 

@@ -22,6 +22,8 @@ _global_script_class_icons={
 
 config/name="Space 3"
 run/main_scene="res://src/Menu/Main Menu.tscn"
+boot_splash/image="res://icon.png"
+boot_splash/bg_color=Color( 0, 0, 0, 1 )
 config/icon="res://icon.png"
 
 [autoload]
@@ -48,6 +50,8 @@ window/stretch/aspect="expand"
 anti=false
 backg=false
 debug=false
+back=false
+envirom=false
 
 [input]
 

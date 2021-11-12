@@ -38,11 +38,29 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Colors" type="CheckBox" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -227.5
+margin_top = -137.858
+margin_right = 227.5
+margin_bottom = -84.858
+text = "Keep Previous Colors"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Controls" type="CheckBox" parent="."]
-margin_left = 711.0
-margin_top = 484.0
-margin_right = 1166.0
-margin_bottom = 537.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -227.5
+margin_top = -31.2186
+margin_right = 227.5
+margin_bottom = 21.7814
 text = "Keep Previous Controls"
 __meta__ = {
 "_edit_use_anchors_": false

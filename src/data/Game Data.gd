@@ -9,9 +9,9 @@ var preferences = Preferences.preferences.duplicate(true)
 func enemy_died() -> void: # When an enemy died checks if the round is over
 	enemies -= 1
 	add_score(score + 1)
-	if enemies <= 0:
+	if enemies <= preferences["global"]["rounds"]["newRound"]:
 		round_number += 1
-		maxEnemies += 1
+		maxEnemies += preferences["global"]["rounds"]["enemyPerRound"]
 		get_node("/root/Arena/Spawner").spawn(maxEnemies)
 		enemies = maxEnemies
 		emit_signal("update_game_interface")
@@ -23,7 +23,7 @@ func add_score(value: int) -> void: # Changes the score
 func start_game():
 	preferences = Preferences.preferences.duplicate(true) # These are the preferences that are actually live during the game
 	get_tree().change_scene("res://src/scene/Arena.tscn")
-	maxEnemies = 1
-	enemies = 0
+	maxEnemies = preferences["global"]["rounds"]["startEnemy"]
+	enemies = preferences["global"]["rounds"]["startEnemy"]
 	score = 0
 	round_number = 1

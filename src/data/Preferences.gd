@@ -77,6 +77,11 @@ export(Dictionary) var startPreference: = {
 		}
 	],
 	"friction": 0.2,
+	"rounds" : {
+		"enemyPerRound" : 1,
+		"newRound" : 0,
+		"startEnemy" : 1
+	},
 	"scale": 1.5,
 	"waitAfterDeath": 1
 },
@@ -156,7 +161,7 @@ export(Dictionary) var startPreference: = {
 	"reload": 1000,
 	"rotation": 2
 },
-"version": "0.3.4"
+"version": "0.4.1"
 } 
 
 export var preferences: Dictionary = startPreference.duplicate() setget changed
@@ -208,8 +213,11 @@ func changed_specific(value: Dictionary, flags: Array = []) -> void:
 		value["player"]["color"] = {"alpha": 1, "blue": 1, "green" : 0, "red" : 0}
 		value["version"] = "0.3.3"
 	if value["version"] == "0.3.3":
-		value["player"]["controls"] = startPreference["player"]["controls"]
+		value["player"]["controls"] = startPreference["player"]["controls"].duplicate()
 		value["version"] = "0.3.4"
+	if value["version"] == "0.3.4":
+		value["global"]["rounds"] = startPreference["global"]["rounds"].duplicate()
+		value["version"] = "0.4.1"
 	if value["version"] != startPreference["version"]:
 		reset()
 	if flags.has("controls"): # Checks if controls should be ignored

@@ -11,7 +11,7 @@ func _ready(): # Will get the game ready
 	player.position = Vector2(840, 580)
 	player.rotation = 3.1415/2
 	get_node("/root/Arena/").call_deferred("add_child", player)
-	spawn(1) # Spawns 1 enemy
+	spawn(data.preferences["global"]["rounds"]["startEnemy"]) # Spawns starting amount of enemys
 	settings_reloaded()
 	Events.connect("changeValues",self,"settings_reloaded")
 	

@@ -2,6 +2,7 @@ extends Node2D
 export var maxX = 1920
 export var maxY = 1080
 var _rng = RandomNumberGenerator.new()
+var enemy_id = 0 # Used to store the highest used id
 
 func _ready(): # Will get the game ready
 	Events.start_event("global", "gameStart")
@@ -28,13 +29,16 @@ func settings_reloaded(): # Will make sure the settings are right.
 func spawn(number: int) -> void: # Used to spawn an emeny
 	Events.start_event("global", "newRound")
 	for _x in range(number):
+		enemy_id += 1 # Increases the id
 		var fighter = load("res://src/fighters/Enemy.tscn")
 		fighter = fighter.instance()
+		fighter.id = str(enemy_id) # Gives this enemy its id
+		data.preferences["enemy"][str(enemy_id)] = data.preferences["enemy"]["original"].duplicate(true)
 		while true: # Generates locations until a valid location is found for the fighter.
 			fighter.position.x = _rng.randf() * maxX
 			fighter.position.y = _rng.randf() * maxY
 			var _exit = true
-			for _range_values in Preferences.preferences["enemy"]["bannedSpawn"]:
+			for _range_values in Preferences.preferences["global"]["bannedSpawn"]:
 				if (fighter.position.x >= _range_values[0] and fighter.position.x <= _range_values[1]) or (fighter.position.y >= _range_values[2] and fighter.position.y <= _range_values[3]):
 					_exit = false
 			if _exit:

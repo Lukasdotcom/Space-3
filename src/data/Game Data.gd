@@ -6,9 +6,10 @@ var score: = 0 setget add_score
 var round_number = 1
 var preferences = Preferences.preferences.duplicate(true)
 	
-func enemy_died() -> void: # When an enemy died checks if the round is over
+func enemy_died(id) -> void: # When an enemy died checks if the round is over
 	enemies -= 1
 	add_score(score + 1)
+	preferences["enemy"].erase(id)
 	if enemies <= preferences["global"]["rounds"]["newRound"]:
 		round_number += 1
 		maxEnemies += preferences["global"]["rounds"]["enemyPerRound"]
@@ -22,6 +23,7 @@ func add_score(value: int) -> void: # Changes the score
 
 func start_game():
 	preferences = Preferences.preferences.duplicate(true) # These are the preferences that are actually live during the game
+	preferences["enemy"] = {"original" : preferences["enemy"]}
 	get_tree().change_scene("res://src/scene/Arena.tscn")
 	maxEnemies = preferences["global"]["rounds"]["startEnemy"]
 	enemies = preferences["global"]["rounds"]["startEnemy"]

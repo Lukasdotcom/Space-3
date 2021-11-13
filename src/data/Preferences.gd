@@ -23,14 +23,6 @@ export(Dictionary) var startPreference: = {
 		}
 	],
 	"accelerate": 500,
-	"bannedSpawn": [
-		[
-			200,
-			1720,
-			200,
-			880
-		]
-	],
 	"brake": -500,
 	"bullet": {
 		"color" : {
@@ -60,6 +52,14 @@ export(Dictionary) var startPreference: = {
 		"green" : 0.1,
 		"red" : 0.1
 	},
+	"bannedSpawn": [
+		[
+			200,
+			1720,
+			200,
+			880
+		]
+	],
 	"events": [
 		{
 			"name": "newRound",
@@ -161,7 +161,7 @@ export(Dictionary) var startPreference: = {
 	"reload": 1000,
 	"rotation": 2
 },
-"version": "0.4.1"
+"version": "0.5.0"
 } 
 
 export var preferences: Dictionary = startPreference.duplicate() setget changed

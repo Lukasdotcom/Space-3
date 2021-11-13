@@ -13,7 +13,7 @@ func enemy_died() -> void: # When an enemy died checks if the round is over
 		round_number += 1
 		maxEnemies += preferences["global"]["rounds"]["enemyPerRound"]
 		get_node("/root/Arena/Spawner").spawn(maxEnemies)
-		enemies = maxEnemies
+		enemies += maxEnemies
 		emit_signal("update_game_interface")
 
 func add_score(value: int) -> void: # Changes the score

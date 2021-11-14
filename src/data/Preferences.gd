@@ -180,7 +180,7 @@ func _ready() -> void:
 
 
 func reset() -> void:
-	preferences = startPreference.duplicate()
+	preferences = startPreference.duplicate(true)
 	save()
 
 
@@ -191,6 +191,7 @@ func changed(value: Dictionary) -> void:
 func changed_specific(value: Dictionary, flags: Array = []) -> void:
 	if not value.has_all(["version"]):
 		reset()
+		return
 	if value["version"] == "0.2.2": # Updates the preferences to be compatible with new version
 		value["version"] = "0.3.0"
 		value["global"] = {
@@ -223,6 +224,7 @@ func changed_specific(value: Dictionary, flags: Array = []) -> void:
 		value["version"] = "0.4.1"
 	if value["version"] != startPreference["version"]:
 		reset()
+		return
 	if flags.has("controls"): # Checks if controls should be ignored
 		value["player"]["controls"] = preferences["player"]["controls"].duplicate(true)
 	if flags.has("colors"): # Checks if colors should be ignored

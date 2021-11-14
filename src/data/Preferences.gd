@@ -1,7 +1,7 @@
 extends Node
 
 var latestVersionCheck = true # Says if it should be checked if you are on the latest version
-var latestVersion = "refs/tags/v0.4.2" # This is the github tag of this version
+var latestVersion = "refs/tags/v0.5.0" # This is the github tag of this version
 const preference_file = "user://preferences.json"
 var key = ""
 var userName = "" 
@@ -23,14 +23,6 @@ export(Dictionary) var startPreference: = {
 		}
 	],
 	"accelerate": 500,
-	"bannedSpawn": [
-		[
-			200,
-			1720,
-			200,
-			880
-		]
-	],
 	"brake": -500,
 	"bullet": {
 		"color" : {
@@ -60,6 +52,14 @@ export(Dictionary) var startPreference: = {
 		"green" : 0.1,
 		"red" : 0.1
 	},
+	"bannedSpawn": [
+		[
+			200,
+			1720,
+			200,
+			880
+		]
+	],
 	"events": [
 		{
 			"name": "newRound",
@@ -86,82 +86,85 @@ export(Dictionary) var startPreference: = {
 	"waitAfterDeath": 1
 },
 "player": {
-	"abilityReload": 5000,
-	"accelerate": 600,
-	"brake": -600,
-	"bullet": {
+	"player1" : {
+		"abilityReload": 5000,
+		"accelerate": 600,
+		"brake": -600,
+		"bullet": {
+			"color" : {
+				"alpha": 1,
+				"blue": 1,
+				"green" : 1,
+				"red" : 1
+			},
+			"speed": 700
+		},
 		"color" : {
 			"alpha": 1,
 			"blue": 1,
-			"green" : 1,
-			"red" : 1
+			"green" : 0,
+			"red" : 0
 		},
-		"speed": 700
-	},
-	"color" : {
-		"alpha": 1,
-		"blue": 1,
-		"green" : 0,
-		"red" : 0
-	},
-	"controls" : {
-		"accelerate" : 16777232,
-		"brake" : 16777234,
-		"right" : 16777233,
-		"left" : 16777231,
-		"shoot" : 32,
-		"ability" : 65
-	},
-	"events" : [
-		{
-			"name": "ability",
-			"stats": [
-				{
-					"path": [
-						"player",
-						"reload"
-					],
-					"time": 2000,
-					"type": "set",
-					"value": 500
-				},
-				{
-					"path": [
-						"player",
-						"bullet",
-						"speed"
-					],
-					"time": 2000,
-					"type": "set",
-					"value": 1500
-				},
-				{
-					"path": [
-						"player",
-						"color",
-						"green"
-					],
-					"time": 2000,
-					"type": "change",
-					"value": 0.2
-				},
-				{
-					"path": [
-						"player",
-						"color",
-						"green"
-					],
-					"time": 5000,
-					"type": "change",
-					"value": 0.2
-				}
-			]
-		}
-	],
-	"reload": 1000,
-	"rotation": 2
+		"controls" : {
+			"accelerate" : 16777232,
+			"brake" : 16777234,
+			"right" : 16777233,
+			"left" : 16777231,
+			"shoot" : 32,
+			"ability" : 65
+		},
+		"events" : [
+			{
+				"name": "ability",
+				"stats": [
+					{
+						"path": [
+							"player",
+							"reload"
+						],
+						"time": 2000,
+						"type": "set",
+						"value": 500
+					},
+					{
+						"path": [
+							"player",
+							"bullet",
+							"speed"
+						],
+						"time": 2000,
+						"type": "set",
+						"value": 1500
+					},
+					{
+						"path": [
+							"player",
+							"color",
+							"green"
+						],
+						"time": 2000,
+						"type": "change",
+						"value": 0.2
+					},
+					{
+						"path": [
+							"player",
+							"color",
+							"green"
+						],
+						"time": 5000,
+						"type": "change",
+						"value": 0.2
+					}
+				]
+			}
+		],
+		"reload": 1000,
+		"respawn": true,
+		"rotation": 2
+	}
 },
-"version": "0.4.1"
+"version": "0.5.0"
 } 
 
 export var preferences: Dictionary = startPreference.duplicate() setget changed
@@ -177,7 +180,7 @@ func _ready() -> void:
 
 
 func reset() -> void:
-	preferences = startPreference.duplicate()
+	preferences = startPreference.duplicate(true)
 	save()
 
 
@@ -188,6 +191,7 @@ func changed(value: Dictionary) -> void:
 func changed_specific(value: Dictionary, flags: Array = []) -> void:
 	if not value.has_all(["version"]):
 		reset()
+		return
 	if value["version"] == "0.2.2": # Updates the preferences to be compatible with new version
 		value["version"] = "0.3.0"
 		value["global"] = {
@@ -216,17 +220,26 @@ func changed_specific(value: Dictionary, flags: Array = []) -> void:
 		value["player"]["controls"] = startPreference["player"]["controls"].duplicate()
 		value["version"] = "0.3.4"
 	if value["version"] == "0.3.4":
-		value["global"]["rounds"] = startPreference["global"]["rounds"].duplicate()
+		value["global"]["rounds"] = {"enemyPerRound": 1, "newRound": 0, "startEnemy" : 1}
 		value["version"] = "0.4.1"
+	if value["version"] == "0.4.1":
+		value["global"]["bannedSpawn"] = value["enemy"]["bannedSpawn"]
+		value["enemy"].erase("bannedSpawn")
+		value["player"] = {"player1" : value["player"]}
+		value["player"]["player1"]["respawn"] = false
+		value["version"] = "0.5.0"
 	if value["version"] != startPreference["version"]:
 		reset()
+		return
 	if flags.has("controls"): # Checks if controls should be ignored
-		value["player"]["controls"] = preferences["player"]["controls"].duplicate(true)
+		for x in value["player"]:
+			value["player"][x]["controls"] = preferences["player"][x]["controls"].duplicate(true)
 	if flags.has("colors"): # Checks if colors should be ignored
+		for x in value["player"]:
+			value["player"][x]["color"] = preferences["player"][x]["color"].duplicate(true)
+			value["player"][x]["bullet"]["color"] = preferences["player"][x]["bullet"]["color"].duplicate(true)
 		value["enemy"]["color"] = preferences["enemy"]["color"].duplicate(true)
 		value["enemy"]["bullet"]["color"] = preferences["enemy"]["bullet"]["color"].duplicate(true)
-		value["player"]["color"] = preferences["player"]["color"].duplicate(true)
-		value["player"]["bullet"]["color"] = preferences["player"]["bullet"]["color"].duplicate(true)
 		value["global"]["backgroundColor"] = preferences["global"]["backgroundColor"].duplicate(true)
 	preferences = value
 	save()

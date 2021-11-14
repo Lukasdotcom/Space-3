@@ -1,18 +1,19 @@
 extends Physics
 var shooter = "";
 var _speed = 0;
+var id = "original"
 onready var _sprite: Sprite = $bullet # Gets the sprite for the bullet
 
 func _ready() -> void:
 	var _color = Color(1, 1, 1, 1)
 	if shooter == "player":
 		self.set_collision_layer(2)
-		_speed = preferences["player"]["bullet"]["speed"]
-		_color = preferences["player"]["bullet"]["color"]
+		_speed = preferences["player"][id]["bullet"]["speed"]
+		_color = preferences["player"][id]["bullet"]["color"]
 	else:
 		self.set_collision_layer(32)
-		_speed = preferences["enemy"]["bullet"]["speed"]
-		_color = preferences["enemy"]["bullet"]["color"]
+		_speed = preferences["enemy"][id]["bullet"]["speed"]
+		_color = preferences["enemy"][id]["bullet"]["color"]
 	_sprite.set_self_modulate(Color(_color["red"], _color["green"], _color["blue"], _color["alpha"]))
 
 func _physics_process(delta: float) -> void:

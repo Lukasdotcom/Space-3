@@ -40,7 +40,7 @@ func _physics_process(delta: float) -> void:
 	_speed *= pow(_friction, delta)
 	_speed += Input.get_action_strength("accelerate" + id) * _accelerate * delta
 	_speed += Input.get_action_strength("brake" + id) * _brake * delta
-	rotate(((Input.get_action_strength("right" + id) - Input.get_action_strength("left")) * _rotation * delta))
+	rotate(((Input.get_action_strength("right" + id) - Input.get_action_strength("left" + id)) * _rotation * delta))
 	var _result = move_and_slide_angles(fix_rotation_calculation(self.rotation), _speed, delta)
 	_speed = _result[0]
 	if _result[2]:

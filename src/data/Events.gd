@@ -21,15 +21,16 @@ func start_event(category: String, name: String, id: String = "") -> void: # Use
 							y["path"].pop_front()
 							var _yPath = y["path"].duplicate()
 							for enemy in data.preferences["enemy"].keys():
-								y["path"] = [category, enemy]
+								y["path"] = ["enemy", enemy]
 								y["path"].append_array(_yPath)
 								quick_change(y)
 						elif y["path"][0] == "player": # Checks if all players need to be edited
 							y["path"].pop_front()
 							var _yPath = y["path"].duplicate()
 							for player in data.preferences["player"].keys():
-								y["path"] = [category, player]
+								y["path"] = ["player", player]
 								y["path"].append_array(_yPath)
+								print(y)
 								quick_change(y)
 						elif y["path"][0] == "self": # Checks if self shortcut is used
 							y["path"].pop_front()

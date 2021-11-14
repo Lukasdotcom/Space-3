@@ -1,7 +1,7 @@
 extends Node
 
 var latestVersionCheck = true # Says if it should be checked if you are on the latest version
-var latestVersion = "refs/tags/v0.5.0" # This is the github tag of this version
+var latestVersion = "refs/tags/v0.5.1" # This is the github tag of this version
 const preference_file = "user://preferences.json"
 var key = ""
 var userName = "" 

@@ -128,7 +128,7 @@ export(Dictionary) var startPreference: = {
 					},
 					{
 						"path": [
-							"player",
+							"self",
 							"bullet",
 							"speed"
 						],
@@ -138,7 +138,7 @@ export(Dictionary) var startPreference: = {
 					},
 					{
 						"path": [
-							"player",
+							"self",
 							"color",
 							"green"
 						],
@@ -148,7 +148,7 @@ export(Dictionary) var startPreference: = {
 					},
 					{
 						"path": [
-							"player",
+							"self",
 							"color",
 							"green"
 						],

@@ -232,12 +232,14 @@ func changed_specific(value: Dictionary, flags: Array = []) -> void:
 		reset()
 		return
 	if flags.has("controls"): # Checks if controls should be ignored
-		value["player"]["controls"] = preferences["player"]["controls"].duplicate(true)
+		for x in value["player"]:
+			value["player"][x]["controls"] = preferences["player"][x]["controls"].duplicate(true)
 	if flags.has("colors"): # Checks if colors should be ignored
+		for x in value["player"]:
+			value["player"][x]["color"] = preferences["player"][x]["color"].duplicate(true)
+			value["player"][x]["bullet"]["color"] = preferences["player"][x]["bullet"]["color"].duplicate(true)
 		value["enemy"]["color"] = preferences["enemy"]["color"].duplicate(true)
 		value["enemy"]["bullet"]["color"] = preferences["enemy"]["bullet"]["color"].duplicate(true)
-		value["player"]["color"] = preferences["player"]["color"].duplicate(true)
-		value["player"]["bullet"]["color"] = preferences["player"]["bullet"]["color"].duplicate(true)
 		value["global"]["backgroundColor"] = preferences["global"]["backgroundColor"].duplicate(true)
 	preferences = value
 	save()

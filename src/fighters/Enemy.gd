@@ -37,10 +37,10 @@ func _physics_process(delta: float) -> void:
 	var _opponent_pos = Vector2(0, 0)
 	if get_node(_opponent_node): # Will check if the oponnent is still alive
 		_opponent_pos = get_node(_opponent_node).position
-	else: # If the opponent is dead it will try to find a new alive opponent
-		for player in data.preferences["player"]:
-			if data.preferences["player"][player]["alive"]:
-				_opponent_node = "/root/Arena/" + player
+	else: # If the opponent is dead it will pick a random player to target
+		var _player = data.preferences["player"].keys()[_rng.randi() % data.preferences["player"].size()]
+		if data.preferences["player"][_player]["alive"]:
+			_opponent_node = "/root/Arena/" + _player
 	var _distance = self.position - _opponent_pos
 	var _result = move_and_slide_angles(fix_rotation_calculation(self.rotation), _speed, delta)
 	_speed = _result[0]

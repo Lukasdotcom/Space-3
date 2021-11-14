@@ -8,8 +8,8 @@ func _ready() -> void:
 	var _color = Color(1, 1, 1, 1)
 	if shooter == "player":
 		self.set_collision_layer(2)
-		_speed = preferences["player"]["bullet"]["speed"]
-		_color = preferences["player"]["bullet"]["color"]
+		_speed = preferences["player"][id]["bullet"]["speed"]
+		_color = preferences["player"][id]["bullet"]["color"]
 	else:
 		self.set_collision_layer(32)
 		_speed = preferences["enemy"][id]["bullet"]["speed"]

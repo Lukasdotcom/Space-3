@@ -7,11 +7,9 @@ var enemy_id = 0 # Used to store the highest used id
 func _ready(): # Will get the game ready
 	Events.start_event("global", "gameStart")
 	_rng.randomize()
-	var player = load("res://src/fighters/Player.tscn") # Spawns player
-	player = player.instance()
-	player.position = Vector2(840, 580)
-	player.rotation = 3.1415/2
-	get_node("/root/Arena/").call_deferred("add_child", player)
+	for playerid in data.preferences["player"].keys(): # Spawns every player
+		data.preferences["player"][playerid]["alive"] = true
+		spawn_player(playerid)
 	spawn(data.preferences["global"]["rounds"]["startEnemy"]) # Spawns starting amount of enemys
 	settings_reloaded()
 	Events.connect("changeValues",self,"settings_reloaded")
@@ -19,12 +17,23 @@ func _ready(): # Will get the game ready
 func settings_reloaded(): # Will make sure the settings are right.
 	var _color = data.preferences["global"]["backgroundColor"]
 	VisualServer.set_default_clear_color(Color(_color["red"], _color["green"], _color["blue"]))
-	var _controls = data.preferences["player"]["controls"] # Will get all the controls for the player
-	for change in _controls: # Will change each control.
-		InputMap.action_erase_events(change)
-		var _event_press = InputEventKey.new()
-		_event_press.set_scancode(_controls[change])
-		InputMap.action_add_event(change, _event_press)
+	for playerid in data.preferences["player"].keys(): # Will go through each player to edit the controls for them
+		var _controls = data.preferences["player"][playerid]["controls"]
+		for change in _controls: # Will change each control for that player
+			var change2 = change + playerid
+			InputMap.erase_action(change2)
+			InputMap.add_action(change2)
+			var _event_press = InputEventKey.new()
+			_event_press.set_scancode(_controls[change])
+			InputMap.action_add_event(change2, _event_press)
+
+func spawn_player(id: String) -> void: # Used to spawn a player
+	var player = load("res://src/fighters/Player.tscn") # Spawns player
+	player = player.instance()
+	player.position = Vector2(_rng.randf() * maxX, _rng.randf() * maxY)
+	player.rotation = 3.1415/2
+	player.id = id
+	get_node("/root/Arena/").call_deferred("add_child", player)
 
 func spawn(number: int) -> void: # Used to spawn an emeny
 	Events.start_event("global", "newRound")

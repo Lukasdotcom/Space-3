@@ -16,6 +16,10 @@ func enemy_died(id) -> void: # When an enemy died checks if the round is over
 		get_node("/root/Arena/Spawner").spawn(maxEnemies)
 		enemies += maxEnemies
 		emit_signal("update_game_interface")
+		for playerid in preferences["player"].keys(): # Spawns all dead players
+			if not preferences["player"][playerid]["alive"] and preferences["player"][playerid]["respawn"]:
+				preferences["player"][playerid]["alive"] = true
+				get_node("/root/Arena/Spawner").spawn_player(playerid)
 
 func add_score(value: int) -> void: # Changes the score
 	score = value

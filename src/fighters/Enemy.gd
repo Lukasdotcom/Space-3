@@ -12,7 +12,7 @@ var _action = {"number":0, "timeEnd":-0.1}
 var _speed = 0.1
 var _last_shot = 0
 var _rng = RandomNumberGenerator.new()
-
+onready var _opponent_node = "/root/Arena/Player"
 
 func _ready():
 	Events.start_event("enemy", "spawn", id)
@@ -35,8 +35,12 @@ func _physics_process(delta: float) -> void:
 	_speed *= pow(_friction, delta)
 	_speed = _enemy_action(_speed, delta)
 	var _opponent_pos = Vector2(0, 0)
-	if get_node("/root/Arena/Player"):
-		_opponent_pos = get_node("/root/Arena/Player").position
+	if get_node(_opponent_node): # Will check if the oponnent is still alive
+		_opponent_pos = get_node(_opponent_node).position
+	else: # If the opponent is dead it will try to find a new alive opponent
+		for player in data.preferences["player"]:
+			if data.preferences["player"][player]["alive"]:
+				_opponent_node = "/root/Arena/" + player
 	var _distance = self.position - _opponent_pos
 	var _result = move_and_slide_angles(fix_rotation_calculation(self.rotation), _speed, delta)
 	_speed = _result[0]

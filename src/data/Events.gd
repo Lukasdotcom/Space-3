@@ -2,12 +2,17 @@ signal changeValues
 extends Node
 
 func start_event(category: String, name: String, id: String = "") -> void: # Used to start an event
-	if category in Preferences.preferences:
-		if "events" in Preferences.preferences[category]:
+	if category in Preferences.preferences: # Will check if it exists
+		var event_list
+		if category == "player":
+			event_list = Preferences.preferences["player"][id]
+		else:
+			event_list = Preferences.preferences[category]
+		if "events" in event_list: # Will check if it exists
 			var _counter = 0
-			for x in Preferences.preferences[category]["events"]:
+			for x in event_list["events"]:
 				if x["name"] == name:
-					var _preference_change = Preferences.preferences[category]["events"][_counter]["stats"]
+					var _preference_change = event_list["events"][_counter]["stats"]
 					for y in _preference_change:
 						y = y.duplicate(true)
 						if y["path"][0] == "self" and not id: # Checks if no id is given but self is still asked for and then does nothing
@@ -17,6 +22,13 @@ func start_event(category: String, name: String, id: String = "") -> void: # Use
 							var _yPath = y["path"].duplicate()
 							for enemy in data.preferences["enemy"].keys():
 								y["path"] = [category, enemy]
+								y["path"].append_array(_yPath)
+								quick_change(y)
+						elif y["path"][0] == "player": # Checks if all players need to be edited
+							y["path"].pop_front()
+							var _yPath = y["path"].duplicate()
+							for player in data.preferences["player"].keys():
+								y["path"] = [category, player]
 								y["path"].append_array(_yPath)
 								quick_change(y)
 						elif y["path"][0] == "self": # Checks if self shortcut is used

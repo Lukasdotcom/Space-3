@@ -9,8 +9,15 @@ func _ready() -> void: # Adjusts the aspect ratio of the map so it fits correctl
 		_tile_map.set_scale(Vector2(1, _new_scale.y / 1080 * 1920 / _new_scale.x))
 
 
-func on_player_death() -> void:
-	get_node("Timer").start(Preferences.preferences["global"]["waitAfterDeath"])
+func on_player_death(id) -> void:
+	data.preferences["player"][id]["alive"] = false
+	var allDead = true 
+	for player in data.preferences["player"]:
+		if data.preferences["player"][player]["alive"]:
+			allDead = false
+			break
+	if allDead:
+		get_node("Timer").start(Preferences.preferences["global"]["waitAfterDeath"])
 
 
 func _on_Timer_timeout() -> void:

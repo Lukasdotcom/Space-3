@@ -86,80 +86,83 @@ export(Dictionary) var startPreference: = {
 	"waitAfterDeath": 1
 },
 "player": {
-	"abilityReload": 5000,
-	"accelerate": 600,
-	"brake": -600,
-	"bullet": {
+	"player1" : {
+		"abilityReload": 5000,
+		"accelerate": 600,
+		"brake": -600,
+		"bullet": {
+			"color" : {
+				"alpha": 1,
+				"blue": 1,
+				"green" : 1,
+				"red" : 1
+			},
+			"speed": 700
+		},
 		"color" : {
 			"alpha": 1,
 			"blue": 1,
-			"green" : 1,
-			"red" : 1
+			"green" : 0,
+			"red" : 0
 		},
-		"speed": 700
-	},
-	"color" : {
-		"alpha": 1,
-		"blue": 1,
-		"green" : 0,
-		"red" : 0
-	},
-	"controls" : {
-		"accelerate" : 16777232,
-		"brake" : 16777234,
-		"right" : 16777233,
-		"left" : 16777231,
-		"shoot" : 32,
-		"ability" : 65
-	},
-	"events" : [
-		{
-			"name": "ability",
-			"stats": [
-				{
-					"path": [
-						"player",
-						"reload"
-					],
-					"time": 2000,
-					"type": "set",
-					"value": 500
-				},
-				{
-					"path": [
-						"player",
-						"bullet",
-						"speed"
-					],
-					"time": 2000,
-					"type": "set",
-					"value": 1500
-				},
-				{
-					"path": [
-						"player",
-						"color",
-						"green"
-					],
-					"time": 2000,
-					"type": "change",
-					"value": 0.2
-				},
-				{
-					"path": [
-						"player",
-						"color",
-						"green"
-					],
-					"time": 5000,
-					"type": "change",
-					"value": 0.2
-				}
-			]
-		}
-	],
-	"reload": 1000,
-	"rotation": 2
+		"controls" : {
+			"accelerate" : 16777232,
+			"brake" : 16777234,
+			"right" : 16777233,
+			"left" : 16777231,
+			"shoot" : 32,
+			"ability" : 65
+		},
+		"events" : [
+			{
+				"name": "ability",
+				"stats": [
+					{
+						"path": [
+							"player",
+							"reload"
+						],
+						"time": 2000,
+						"type": "set",
+						"value": 500
+					},
+					{
+						"path": [
+							"player",
+							"bullet",
+							"speed"
+						],
+						"time": 2000,
+						"type": "set",
+						"value": 1500
+					},
+					{
+						"path": [
+							"player",
+							"color",
+							"green"
+						],
+						"time": 2000,
+						"type": "change",
+						"value": 0.2
+					},
+					{
+						"path": [
+							"player",
+							"color",
+							"green"
+						],
+						"time": 5000,
+						"type": "change",
+						"value": 0.2
+					}
+				]
+			}
+		],
+		"reload": 1000,
+		"respawn": false,
+		"rotation": 2
+	}
 },
 "version": "0.5.0"
 } 

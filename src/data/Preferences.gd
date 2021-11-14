@@ -160,7 +160,7 @@ export(Dictionary) var startPreference: = {
 			}
 		],
 		"reload": 1000,
-		"respawn": false,
+		"respawn": true,
 		"rotation": 2
 	}
 },
@@ -220,8 +220,14 @@ func changed_specific(value: Dictionary, flags: Array = []) -> void:
 		value["player"]["controls"] = startPreference["player"]["controls"].duplicate()
 		value["version"] = "0.3.4"
 	if value["version"] == "0.3.4":
-		value["global"]["rounds"] = startPreference["global"]["rounds"].duplicate()
+		value["global"]["rounds"] = {"enemyPerRound": 1, "newRound": 0, "startEnemy" : 1}
 		value["version"] = "0.4.1"
+	if value["version"] == "0.4.1":
+		value["global"]["bannedSpawn"] = value["enemy"]["bannedSpawn"]
+		value["enemy"].erase("bannedSpawn")
+		value["player"] = {"player1" : value["player"]}
+		value["player"]["player1"]["respawn"] = false
+		value["version"] = "0.5.0"
 	if value["version"] != startPreference["version"]:
 		reset()
 		return

@@ -30,7 +30,6 @@ func start_event(category: String, name: String, id: String = "") -> void: # Use
 							for player in data.preferences["player"].keys():
 								y["path"] = ["player", player]
 								y["path"].append_array(_yPath)
-								print(y)
 								quick_change(y)
 						elif y["path"][0] == "self": # Checks if self shortcut is used
 							y["path"].pop_front()
@@ -51,11 +50,16 @@ func quick_change(y):
 							"path" : y["path"].duplicate(),
 							"value" : get_value(y["path"].duplicate(), data.preferences),
 							"type" : "set"}
-	else:
+	elif y["type"] == "change":
 		timer.information = {"length" : y["time"],
 							"path" : y["path"].duplicate(),
 							"value" : (-1 * y["value"]),
 							"type" : "change"}
+	else:
+		timer.information = {"length" : y["time"],
+							"path" : y["path"].duplicate(),
+							"value" : (1/y["value"]),
+							"type" : "multiply"}
 	self.add_child(timer)
 	data.preferences = change_value(y["path"].duplicate(), y["value"], y["type"], data.preferences)
 
@@ -77,6 +81,8 @@ func change_value(path: Array, value, type: String, preference: Dictionary) -> D
 			preference[path_name] = value
 		elif type == "change":
 			preference[path_name] += value
+		elif type == "multiply":
+			preference[path_name] *= value
 	return preference
 
 func changed_value(): # Emits signal that value was changed

@@ -52,12 +52,38 @@ export(Dictionary) var startPreference: = {
 		"green" : 0.1,
 		"red" : 0.1
 	},
-	"bannedSpawn": [
+	"bannedSpawnEnemy": [
 		[
 			200,
 			1720,
 			200,
 			880
+		]
+	],
+	"bannedSpawnPlayer": [
+		[
+			0,
+			400,
+			0,
+			1080
+		],
+		[
+			1520,
+			1920,
+			0,
+			1080
+		],
+		[
+			0,
+			1920,
+			0,
+			400
+		],
+		[
+			0,
+			1920,
+			680,
+			1080
 		]
 	],
 	"events": [
@@ -232,6 +258,9 @@ func changed_specific(value: Dictionary, flags: Array = []) -> void:
 	if value["version"] == "0.5.0":
 		for x in value["player"]:
 			 value["player"][x]["noEnemySpawnRadius"] = 300
+		value["global"]["bannedSpawnEnemy"] = value["global"]["bannedSpawn"]
+		value["global"]["bannedSpawnPlayer"] = startPreference["global"]["bannedSpawnPlayer"]
+		value["global"].erase("bannedSpawn")
 		value["version"] = "0.5.2"
 	if value["version"] != startPreference["version"]:
 		reset()

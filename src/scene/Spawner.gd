@@ -30,7 +30,15 @@ func settings_reloaded(): # Will make sure the settings are right.
 func spawn_player(id: String) -> void: # Used to spawn a player
 	var player = load("res://src/fighters/Player.tscn") # Spawns player
 	player = player.instance()
-	player.position = Vector2(_rng.randf() * maxX, _rng.randf() * maxY)
+	while true: # Generates locations until a valid location is found for the player.
+		player.position.x = _rng.randf() * maxX
+		player.position.y = _rng.randf() * maxY
+		var _exit = true
+		for _range_values in data.preferences["global"]["bannedSpawnPlayer"]:
+			if (player.position.x >= _range_values[0] and player.position.x <= _range_values[1]) and (player.position.y >= _range_values[2] and player.position.y <= _range_values[3]):
+				_exit = false
+		if _exit:
+			break
 	player.rotation = 3.1415/2
 	player.id = id
 	get_node("/root/Arena/").call_deferred("add_child", player)
@@ -47,16 +55,15 @@ func spawn(number: int) -> void: # Used to spawn an emeny
 			fighter.position.x = _rng.randf() * maxX
 			fighter.position.y = _rng.randf() * maxY
 			var _exit = true
-			for _range_values in data.preferences["global"]["bannedSpawn"]:
-				if (fighter.position.x >= _range_values[0] and fighter.position.x <= _range_values[1]) or (fighter.position.y >= _range_values[2] and fighter.position.y <= _range_values[3]):
+			for _range_values in data.preferences["global"]["bannedSpawnEnemy"]:
+				if (fighter.position.x >= _range_values[0] and fighter.position.x <= _range_values[1]) and (fighter.position.y >= _range_values[2] and fighter.position.y <= _range_values[3]):
 					_exit = false
-					break
 			if _exit: # This will check that the enemy is not to close to the player
 				for _player in data.preferences["player"]:
 					if get_node("/root/Arena/"+_player):
 						if data.preferences["player"][_player]["noEnemySpawnRadius"] > get_node("/root/Arena/"+_player).position.distance_to(fighter.position):
 							_exit = false
-							break
+			print(_exit)
 			if _exit:
 				break
 		var _angle = (Vector2(maxX/2, maxY/2) - fighter.position).angle()

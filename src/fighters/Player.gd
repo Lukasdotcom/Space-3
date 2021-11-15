@@ -13,6 +13,7 @@ var _last_ability = 0
 signal death # emitted on death of player
 
 func _ready() -> void:
+	Events.start_event("player", "spawn", id)
 	settings_reloaded()
 	self.connect("death",get_node("/root/Arena/"),"on_player_death")
 	Events.connect("changeValues",self,"settings_reloaded")

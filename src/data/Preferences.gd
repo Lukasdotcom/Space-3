@@ -159,12 +159,13 @@ export(Dictionary) var startPreference: = {
 				]
 			}
 		],
+		"noEnemySpawnRadius": 300,
 		"reload": 1000,
 		"respawn": true,
 		"rotation": 2
 	}
 },
-"version": "0.5.0"
+"version": "0.5.2"
 } 
 
 export var preferences: Dictionary = startPreference.duplicate() setget changed
@@ -228,6 +229,10 @@ func changed_specific(value: Dictionary, flags: Array = []) -> void:
 		value["player"] = {"player1" : value["player"]}
 		value["player"]["player1"]["respawn"] = false
 		value["version"] = "0.5.0"
+	if value["version"] == "0.5.0":
+		for x in value["player"]:
+			 value["player"][x]["noEnemySpawnRadius"] = 300
+		value["version"] = "0.5.2"
 	if value["version"] != startPreference["version"]:
 		reset()
 		return

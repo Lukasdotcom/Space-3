@@ -63,7 +63,6 @@ func spawn(number: int) -> void: # Used to spawn an emeny
 					if get_node("/root/Arena/"+_player):
 						if data.preferences["player"][_player]["noEnemySpawnRadius"] > get_node("/root/Arena/"+_player).position.distance_to(fighter.position):
 							_exit = false
-			print(_exit)
 			if _exit:
 				break
 		var _angle = (Vector2(maxX/2, maxY/2) - fighter.position).angle()

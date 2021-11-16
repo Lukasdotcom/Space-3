@@ -30,38 +30,10 @@ anchor_right = 0.5
 margin_left = -753.0
 margin_right = 754.0
 margin_bottom = 293.0
-text = "Sucesfully downloaded please check the following options that you would like to have modify the downloaded Preferences."
+text = "Sucesfully downloaded!"
 align = 1
 valign = 1
 autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Colors" type="CheckBox" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -227.5
-margin_top = -137.858
-margin_right = 227.5
-margin_bottom = -84.858
-text = "Keep Previous Colors"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Controls" type="CheckBox" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -227.5
-margin_top = -31.2186
-margin_right = 227.5
-margin_bottom = 21.7814
-text = "Keep Previous Controls"
 __meta__ = {
 "_edit_use_anchors_": false
 }

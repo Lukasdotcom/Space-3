@@ -5,3 +5,6 @@ export.cfg
 
 # Mono-specific ignores
 .mono/
+
+# Mac os specific ignores
+.DS_Store

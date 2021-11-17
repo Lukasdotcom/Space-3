@@ -5,6 +5,15 @@ var _rng = RandomNumberGenerator.new()
 var enemy_id = 0 # Used to store the highest used id
 
 func _ready(): # Will get the game ready
+	for playerid in data.preferences["player"].keys(): # Will go through each player to edit the controls for them
+		var _controls = data.preferences["player"][playerid]["controls"]
+		for change in _controls: # Will change each control for that player
+			var change2 = change + playerid
+			InputMap.erase_action(change2)
+			InputMap.add_action(change2)
+			var _event_press = InputEventKey.new()
+			_event_press.set_scancode(_controls[change])
+			InputMap.action_add_event(change2, _event_press)
 	Events.start_event("global", "gameStart")
 	_rng.randomize()
 	for playerid in data.preferences["player"].keys(): # Spawns every player
@@ -17,15 +26,6 @@ func _ready(): # Will get the game ready
 func settings_reloaded(): # Will make sure the settings are right.
 	var _color = data.preferences["global"]["backgroundColor"]
 	VisualServer.set_default_clear_color(Color(_color["red"], _color["green"], _color["blue"]))
-	for playerid in data.preferences["player"].keys(): # Will go through each player to edit the controls for them
-		var _controls = data.preferences["player"][playerid]["controls"]
-		for change in _controls: # Will change each control for that player
-			var change2 = change + playerid
-			InputMap.erase_action(change2)
-			InputMap.add_action(change2)
-			var _event_press = InputEventKey.new()
-			_event_press.set_scancode(_controls[change])
-			InputMap.action_add_event(change2, _event_press)
 
 func spawn_player(id: String) -> void: # Used to spawn a player
 	var player = load("res://src/fighters/Player.tscn") # Spawns player
